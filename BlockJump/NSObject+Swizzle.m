@@ -7,11 +7,11 @@
 //
 
 #import <objc/runtime.h>
-#import "NSObject+Swizzler.h"
+#import "NSObject+Swizzle.h"
 
-@implementation NSObject (ESSwizzler)
+@implementation NSObject (BJSwizzle)
 
-+ (void)swizzleInstanceMethod:(SEL)originalSel withNewMethod:(SEL)newMethodSel
++ (void)_bj_swizzleInstanceMethod:(SEL)originalSel withNewMethod:(SEL)newMethodSel
 {
   Method origMethod = class_getInstanceMethod(self, originalSel);
   Method newMethod = class_getInstanceMethod(self, newMethodSel);

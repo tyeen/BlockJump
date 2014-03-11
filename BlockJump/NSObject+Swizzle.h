@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSObject (ESSwizzler)
+@interface NSObject (BJSwizzle)
 
-+ (void)swizzleInstanceMethod:(SEL)origMethodSel withNewMethod:(SEL)newMethodSel;
++ (void)_bj_swizzleInstanceMethod:(SEL)origMethodSel withNewMethod:(SEL)newMethodSel;
 
 @end
