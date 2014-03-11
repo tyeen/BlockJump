@@ -95,11 +95,12 @@
       // like @implementation or @interface.(from my DEBUG log, I can see their type is smaller than 3...
       if (item.type > 3 || item.children == nil || item.children.count == 0) {
         ret = item.nameRange;
-        break;
       } else {
         ret = [self _bj_findJumpRangeAboveRange:currRange inTopLandmark:item];
       }
-    } else if (currRange.location > item.range.location && currRange.location <= nextItem.range.location) {
+      break;
+    } else if (currRange.location > (item.range.location + item.range.length)
+               && currRange.location <= (nextItem.range.location + nextItem.range.length)) {
       ret = item.nameRange;
       break;
     }
