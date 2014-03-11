@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		B17EA26918CEA6100058644A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B17EA26718CEA6100058644A /* InfoPlist.strings */; };
 		B17EA27218CEADCB0058644A /* BlockJump.m in Sources */ = {isa = PBXBuildFile; fileRef = B17EA27118CEADCB0058644A /* BlockJump.m */; };
+		B1E5D5B618CEB34300F9C606 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E5D5B518CEB34300F9C606 /* DVTFoundation.framework */; };
+		B1E5D5B818CEB34D00F9C606 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E5D5B718CEB34D00F9C606 /* DVTKit.framework */; };
+		B1E5D5BA18CEB35500F9C606 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E5D5B918CEB35500F9C606 /* IDEKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +23,9 @@
 		B17EA26A18CEA6100058644A /* BlockJump-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlockJump-Prefix.pch"; sourceTree = "<group>"; };
 		B17EA27018CEADCB0058644A /* BlockJump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockJump.h; sourceTree = "<group>"; };
 		B17EA27118CEADCB0058644A /* BlockJump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockJump.m; sourceTree = "<group>"; };
+		B1E5D5B518CEB34300F9C606 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = BlockJump/SupportFramworks/DVTFoundation.framework; sourceTree = "<group>"; };
+		B1E5D5B718CEB34D00F9C606 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = BlockJump/SupportFramworks/DVTKit.framework; sourceTree = "<group>"; };
+		B1E5D5B918CEB35500F9C606 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = BlockJump/SupportFramworks/IDEKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +33,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1E5D5BA18CEB35500F9C606 /* IDEKit.framework in Frameworks */,
+				B1E5D5B818CEB34D00F9C606 /* DVTKit.framework in Frameworks */,
+				B1E5D5B618CEB34300F9C606 /* DVTFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +62,9 @@
 		B17EA25D18CEA6100058644A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B1E5D5B918CEB35500F9C606 /* IDEKit.framework */,
+				B1E5D5B718CEB34D00F9C606 /* DVTKit.framework */,
+				B1E5D5B518CEB34300F9C606 /* DVTFoundation.framework */,
 				B17EA26018CEA6100058644A /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -243,6 +255,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(HOME)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BlockJump/SupportFramworks",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BlockJump/BlockJump-Prefix.pch";
 				INFOPLIST_FILE = "BlockJump/BlockJump-Info.plist";
@@ -258,6 +274,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(HOME)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BlockJump/SupportFramworks",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BlockJump/BlockJump-Prefix.pch";
 				INFOPLIST_FILE = "BlockJump/BlockJump-Info.plist";
