@@ -157,11 +157,10 @@
 
       if (item.type > 3 || item.children == nil || item.children.count == 0) {
         ret = NSMakeRange(item.range.location + item.range.length, 0);
-        break;
       } else {
         ret = [self _bj_findJumpRangeBelowRange:currRange inTopLandmark:item];
-        break;
       }
+      break;
     } else if (currRange.location >= item.range.location && currRange.location < nextItem.range.location) {
       // The caret is at the position in the range of the landmark which is iterating.
       // It's still necessary to check if this landmark is a "scope" like @implementaion or @interface.
