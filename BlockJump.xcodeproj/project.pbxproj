@@ -1,0 +1,289 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B17EA25F18CEA6100058644A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17EA25E18CEA6100058644A /* Cocoa.framework */; };
+		B17EA26918CEA6100058644A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B17EA26718CEA6100058644A /* InfoPlist.strings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B17EA25B18CEA6100058644A /* BlockJump.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlockJump.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		B17EA25E18CEA6100058644A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		B17EA26118CEA6100058644A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B17EA26218CEA6100058644A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B17EA26318CEA6100058644A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		B17EA26618CEA6100058644A /* BlockJump-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlockJump-Info.plist"; sourceTree = "<group>"; };
+		B17EA26818CEA6100058644A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B17EA26A18CEA6100058644A /* BlockJump-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlockJump-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B17EA25818CEA6100058644A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B17EA25F18CEA6100058644A /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B17EA25218CEA6100058644A = {
+			isa = PBXGroup;
+			children = (
+				B17EA26418CEA6100058644A /* BlockJump */,
+				B17EA25D18CEA6100058644A /* Frameworks */,
+				B17EA25C18CEA6100058644A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B17EA25C18CEA6100058644A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B17EA25B18CEA6100058644A /* BlockJump.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B17EA25D18CEA6100058644A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B17EA25E18CEA6100058644A /* Cocoa.framework */,
+				B17EA26018CEA6100058644A /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B17EA26018CEA6100058644A /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B17EA26118CEA6100058644A /* Foundation.framework */,
+				B17EA26218CEA6100058644A /* CoreData.framework */,
+				B17EA26318CEA6100058644A /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		B17EA26418CEA6100058644A /* BlockJump */ = {
+			isa = PBXGroup;
+			children = (
+				B17EA26518CEA6100058644A /* Supporting Files */,
+			);
+			path = BlockJump;
+			sourceTree = "<group>";
+		};
+		B17EA26518CEA6100058644A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B17EA26618CEA6100058644A /* BlockJump-Info.plist */,
+				B17EA26718CEA6100058644A /* InfoPlist.strings */,
+				B17EA26A18CEA6100058644A /* BlockJump-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B17EA25A18CEA6100058644A /* BlockJump */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B17EA26D18CEA6100058644A /* Build configuration list for PBXNativeTarget "BlockJump" */;
+			buildPhases = (
+				B17EA25718CEA6100058644A /* Sources */,
+				B17EA25818CEA6100058644A /* Frameworks */,
+				B17EA25918CEA6100058644A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BlockJump;
+			productName = BlockJump;
+			productReference = B17EA25B18CEA6100058644A /* BlockJump.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B17EA25318CEA6100058644A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Yin Tan";
+			};
+			buildConfigurationList = B17EA25618CEA6100058644A /* Build configuration list for PBXProject "BlockJump" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B17EA25218CEA6100058644A;
+			productRefGroup = B17EA25C18CEA6100058644A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B17EA25A18CEA6100058644A /* BlockJump */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B17EA25918CEA6100058644A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B17EA26918CEA6100058644A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B17EA25718CEA6100058644A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B17EA26718CEA6100058644A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B17EA26818CEA6100058644A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B17EA26B18CEA6100058644A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B17EA26C18CEA6100058644A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B17EA26E18CEA6100058644A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BlockJump/BlockJump-Prefix.pch";
+				INFOPLIST_FILE = "BlockJump/BlockJump-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		B17EA26F18CEA6100058644A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BlockJump/BlockJump-Prefix.pch";
+				INFOPLIST_FILE = "BlockJump/BlockJump-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B17EA25618CEA6100058644A /* Build configuration list for PBXProject "BlockJump" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B17EA26B18CEA6100058644A /* Debug */,
+				B17EA26C18CEA6100058644A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B17EA26D18CEA6100058644A /* Build configuration list for PBXNativeTarget "BlockJump" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B17EA26E18CEA6100058644A /* Debug */,
+				B17EA26F18CEA6100058644A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B17EA25318CEA6100058644A /* Project object */;
+}
