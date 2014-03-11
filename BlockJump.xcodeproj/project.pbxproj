@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B17EA26918CEA6100058644A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B17EA26718CEA6100058644A /* InfoPlist.strings */; };
-		B17EA27218CEADCB0058644A /* BlockJump.m in Sources */ = {isa = PBXBuildFile; fileRef = B17EA27118CEADCB0058644A /* BlockJump.m */; };
+		B17EA27218CEADCB0058644A /* DVTSourceTextView+BlockJump.m in Sources */ = {isa = PBXBuildFile; fileRef = B17EA27118CEADCB0058644A /* DVTSourceTextView+BlockJump.m */; };
 		B1E5D5B618CEB34300F9C606 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E5D5B518CEB34300F9C606 /* DVTFoundation.framework */; };
 		B1E5D5B818CEB34D00F9C606 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E5D5B718CEB34D00F9C606 /* DVTKit.framework */; };
 		B1E5D5BA18CEB35500F9C606 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E5D5B918CEB35500F9C606 /* IDEKit.framework */; };
@@ -22,8 +22,8 @@
 		B17EA26618CEA6100058644A /* BlockJump-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlockJump-Info.plist"; sourceTree = "<group>"; };
 		B17EA26818CEA6100058644A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B17EA26A18CEA6100058644A /* BlockJump-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlockJump-Prefix.pch"; sourceTree = "<group>"; };
-		B17EA27018CEADCB0058644A /* BlockJump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockJump.h; sourceTree = "<group>"; };
-		B17EA27118CEADCB0058644A /* BlockJump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockJump.m; sourceTree = "<group>"; };
+		B17EA27018CEADCB0058644A /* DVTSourceTextView+BlockJump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTSourceTextView+BlockJump.h"; sourceTree = "<group>"; };
+		B17EA27118CEADCB0058644A /* DVTSourceTextView+BlockJump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVTSourceTextView+BlockJump.m"; sourceTree = "<group>"; };
 		B1E5D5B518CEB34300F9C606 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = BlockJump/SupportFramworks/DVTFoundation.framework; sourceTree = "<group>"; };
 		B1E5D5B718CEB34D00F9C606 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = BlockJump/SupportFramworks/DVTKit.framework; sourceTree = "<group>"; };
 		B1E5D5B918CEB35500F9C606 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = BlockJump/SupportFramworks/IDEKit.framework; sourceTree = "<group>"; };
@@ -94,8 +94,8 @@
 				B1E5D5C218CEB42A00F9C606 /* NSObject+Swizzle.m */,
 				B1E5D5BB18CEB38800F9C606 /* Xcode Headers */,
 				B17EA26518CEA6100058644A /* Supporting Files */,
-				B17EA27018CEADCB0058644A /* BlockJump.h */,
-				B17EA27118CEADCB0058644A /* BlockJump.m */,
+				B17EA27018CEADCB0058644A /* DVTSourceTextView+BlockJump.h */,
+				B17EA27118CEADCB0058644A /* DVTSourceTextView+BlockJump.m */,
 			);
 			path = BlockJump;
 			sourceTree = "<group>";
@@ -184,7 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B17EA27218CEADCB0058644A /* BlockJump.m in Sources */,
+				B17EA27218CEADCB0058644A /* DVTSourceTextView+BlockJump.m in Sources */,
 				B1E5D5C318CEB42A00F9C606 /* NSObject+Swizzle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

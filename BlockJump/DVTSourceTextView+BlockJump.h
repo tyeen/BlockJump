@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DVTKit.h"
 
-@interface BlockJump : NSObject
+@interface DVTSourceTextView (BlockJump)
 
 @end
