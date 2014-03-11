@@ -1,0 +1,223 @@
+// Not Quite C
+(
+
+/****************************************************************************/
+// MARK: NQC keywords
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.nqc.identifier";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+                "__event_src",
+                "__sensor",
+                "__type",
+                "abs",
+                "acquire",
+                "asm",
+                "break",
+                "case",
+                "catch",
+                "const",
+                "continue",
+                "default",
+                "do",
+                "else",
+                "false",
+                "for",
+                "if",
+                "inline",
+                "int",
+                "monitor",
+                "repeat",
+                "return",
+                "sign",
+                "start",
+                "stop",
+                "sub",
+                "switch",
+                "task",
+                "true",
+                "void",
+                "while",
+                
+                "ACQUIRE_OUT_A",
+                "ACQUIRE_OUT_B",
+                "ACQUIRE_OUT_C",
+                "ACQUIRE_SOUND",
+                "ACQUIRE_USER_1",
+                "ACQUIRE_USER_2",
+                "ACQUIRE_USER_3",
+                "ACQUIRE_USER_4",
+                "DISPLAY_OUT_A",
+                "DISPLAY_OUT_B",
+                "DISPLAY_OUT_C",
+                "DISPLAY_SENSOR_1",
+                "DISPLAY_SENSOR_2",
+                "DISPLAY_SENSOR_3",
+                "DISPLAY_USER",
+                "DISPLAY_WATCH",
+                "EVENT_MASK",
+                "EVENT_TYPE_CLICK",
+                "EVENT_TYPE_DOUBLECLICK",
+                "EVENT_TYPE_EDGE",
+                "EVENT_TYPE_FASTCHANGE",
+                "EVENT_TYPE_HIGH",
+                "EVENT_TYPE_LOW",
+                "EVENT_TYPE_MESSAGE",
+                "EVENT_TYPE_NORMAL",
+                "EVENT_TYPE_PRESSED",
+                "EVENT_TYPE_PULSE",
+                "EVENT_TYPE_RELEASED",
+                "OUT_A",
+                "OUT_B",
+                "OUT_C",
+                "OUT_FLOAT",
+                "OUT_FORWARD",
+                "OUT_OFF",
+                "OUT_ON",
+                "OUT_REV",
+                "OUT_TOGGLE",
+                "SENSOR_1",
+                "SENSOR_2",
+                "SENSOR_3",
+                "SENSOR_CELSIUS",
+                "SENSOR_EDGE",
+                "SENSOR_FAHRENHEIT",
+                "SENSOR_LIGHT",
+                "SENSOR_MODE_BOOL",
+                "SENSOR_MODE_CELSIUS",
+                "SENSOR_MODE_EDGE",
+                "SENSOR_MODE_FAHRENHEIT",
+                "SENSOR_MODE_PERCENT",
+                "SENSOR_MODE_PULSE",
+                "SENSOR_MODE_RAW",
+                "SENSOR_MODE_ROTATION",
+                "SENSOR_PULSE",
+                "SENSOR_ROTATION",
+                "SENSOR_TOUCH",
+                "SENSOR_TYPE_LIGHT",
+                "SENSOR_TYPE_NONE",
+                "SENSOR_TYPE_ROTATION",
+                "SENSOR_TYPE_TEMPERATURE",
+                "SENSOR_TYPE_TOUCH",
+                "SERIAL_COMM_4800",
+                "SERIAL_COMM_76KHZ",
+                "SERIAL_COMM_DEFAULT",
+                "SERIAL_COMM_DUTY25",
+                "SERIAL_PACKET_CHECKSUM",
+                "SERIAL_PACKET_DEFAULT",
+                "SERIAL_PACKET_NEGATED",
+                "SERIAL_PACKET_PREAMBLE",
+                "SERIAL_PACKET_RCX",
+                "SOUND_CLICK",
+                "SOUND_DOUBLE_BEEP",
+                "SOUND_DOWN",
+                "SOUND_FAST_UP",
+                "SOUND_LOW_BEEP",
+                "SOUND_UP",
+                "__ASM_NO_LOCAL",
+                "__ASM_NO_TYPE",
+                "__ASM_SMALL_VALUE",
+                "__ASM_SRC_BASIC",
+                "__ASM_SRC_EXT",
+             );
+            Type = "xcode.syntax.keyword";
+            AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
+        };
+    },
+
+
+/****************************************************************************/
+// MARK: C Syntax Coloring
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.nqc";
+        Description = "Note Quite C Coloring";
+        BasedOn = "xcode.lang.c";
+        IncludeInMenu = YES;
+        UsesCLikeIndentation = YES;
+        Name = "NQC";
+        Syntax = {
+            Tokenizer = "xcode.lang.nqc.lexer";
+            IncludeRules = (
+                "xcode.lang.nqc.function",
+                "xcode.lang.nqc.block",
+                "xcode.lang.nqc.bracketexpr",
+                "xcode.lang.nqc.parenexpr",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+    
+    // The following rule returns tokens to the other rules
+    {
+        Identifier = "xcode.lang.nqc.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.nqc.identifier",
+                "xcode.lang.number",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.nqc.function";
+        Syntax = {
+            Tokenizer = "xcode.lang.nqc.lexer";
+            Rules = (
+                "xcode.lang.nqc.identifier",
+                "xcode.lang.nqc.parenexpr",
+                "xcode.lang.nqc.block",
+            );
+            Type = "xcode.syntax.definition.function";
+        };
+    },
+    {
+        Identifier = "xcode.lang.nqc.block";
+        Syntax = {
+            Tokenizer = "xcode.lang.nqc.lexer";
+            Start = "{";
+            End = "}";
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.nqc.bracketexpr",
+                "xcode.lang.nqc.parenexpr",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.nqc.parenexpr";
+        Syntax = {
+            Tokenizer = "xcode.lang.nqc.lexer";
+            Start = "(";
+            End = ")";
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.nqc.bracketexpr",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.nqc.bracketexpr";
+        Syntax = {
+            Tokenizer = "xcode.lang.nqc.lexer";
+            Start = "[";
+            End = "]";
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.nqc.parenexpr",
+            );
+        };
+    },
+)
+

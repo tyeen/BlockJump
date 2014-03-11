@@ -1,0 +1,226 @@
+// Interfacer
+(
+
+/****************************************************************************/
+// MARK: Interfacer keywords
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.interfacer.identifier";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_%";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+                "__alignof__",
+                "__asm__",
+                "__attribute__",
+                "__complex__",
+                "__extension__",
+                "__imag__",
+                "__label__",
+                "__real__",
+                "__restrict",
+                "__restrict__",
+                "__typeof__",
+                "_Bool",
+                "_Complex",
+                "_Imaginary",
+                "asm",
+                "auto",
+                "break",
+                "case",
+                "char",
+                "const",
+                "continue",
+                "default",
+                "do",
+                "double",
+                "else",
+                "enum",
+                "extern",
+                "float",
+                "for",
+                "goto",
+                "if",
+                "inline",
+                "int",
+                "long",
+                "pascal",
+                "register",
+                "restrict",
+                "return",
+                "short",
+                "signed",
+                "sizeof",
+                "static",
+                "struct",
+                "switch",
+                "typedef",
+                "typeof",
+                "union",
+                "unsigned",
+                "void",
+                "volatile",
+                "while",
+
+                "ByteArrayStruct",
+                "HandleStruct",
+                "MacPrefix",
+                "NoStruct",
+                "PointerStruct",
+                "asm",
+                "c",
+                "carbonOnly",
+                "customMixedModeGlue",
+                "defined",
+                "deprecated",
+                "exportset",
+                "extended",
+                "inout",
+                "java",
+                "javaClass",
+                "mixedmodeUPP",
+                "nativeUPP",
+                "noGrandfatherProc",
+                "noInline",
+                "noJava",
+                "noMixedModeGlue",
+                "noUPP",
+                "none",
+                "null",
+                "opaque",
+                "out",
+                "output",
+                "packed",
+                "pascal",
+                "pascalPtr",
+                "pascalVal",
+                "prototype",
+                "rez",
+                "string",
+                "threadHot",
+                "threadSafe",
+                "threadUnsafe",
+                "type",
+                
+                "%if",
+                "%inline",
+                "%else",
+                "%endif",
+                "%AsmPassThru",
+                "%CPassThru",
+                "%PassThru",
+                "%PascalPassThru",
+                "%RezPassThru",
+                "%TellEmitter",
+             );
+            Type = "xcode.syntax.keyword";
+            AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
+        };
+    },
+
+
+/****************************************************************************/
+// MARK: C Syntax Coloring
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.interfacer";
+        Description = "Interfacer Coloring";
+        BasedOn = "xcode.lang.c";
+        IncludeInMenu = YES;
+        UsesCLikeIndentation = YES;
+        Name = "Interfacer";
+        Syntax = {
+            Tokenizer = "xcode.lang.interfacer.lexer";
+            IncludeRules = (
+                "xcode.lang.interfacer.function",
+                "xcode.lang.interfacer.block",
+                "xcode.lang.interfacer.bracketexpr",
+                "xcode.lang.interfacer.parenexpr",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+    
+    // The following rule returns tokens to the other rules
+    {
+        Identifier = "xcode.lang.interfacer.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.interfacer.comment.singleline",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.interfacer.identifier",
+                "xcode.lang.number",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.interfacer.function";
+        Syntax = {
+            Tokenizer = "xcode.lang.interfacer.lexer";
+            Rules = (
+                "xcode.lang.interfacer.identifier",
+                "xcode.lang.interfacer.parenexpr",
+                "xcode.lang.interfacer.block",
+            );
+            Type = "xcode.syntax.definition.function";
+        };
+    },
+    {
+        Identifier = "xcode.lang.interfacer.block";
+        Syntax = {
+            Tokenizer = "xcode.lang.interfacer.lexer";
+            Start = "{";
+            End = "}";
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.interfacer.bracketexpr",
+                "xcode.lang.interfacer.parenexpr",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.interfacer.parenexpr";
+        Syntax = {
+            Tokenizer = "xcode.lang.interfacer.lexer";
+            Start = "(";
+            End = ")";
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.interfacer.bracketexpr",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.interfacer.bracketexpr";
+        Syntax = {
+            Tokenizer = "xcode.lang.interfacer.lexer";
+            Start = "[";
+            End = "]";
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.interfacer.parenexpr",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.interfacer.comment.singleline";
+        Syntax = {
+            Start = "%%";
+            EscapeChar = "\\";
+            End = "\n";
+            IncludeRules = ( "xcode.lang.url", "xcode.lang.url.mail", "xcode.lang.comment.mark" );
+            Type = "xcode.syntax.comment";
+        };
+    },
+)
+

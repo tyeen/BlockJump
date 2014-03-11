@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<slice>
+    <section>
+        <sliver title="Name">
+            <property type="string" keyPath="inspectedObjectsController.selection.ideInspectedName" actionSelector="renameFiles:" editableKeyPath="inspectedObjectsController.selection.ideInspectedIsNameEditable"/>
+        </sliver>
+        <sliver title="Type" visibleKeyPath="inspectedObjectsController.selection.ideInspectedShowsFileTypePopUp">
+            <property type="file-identity-and-type-type-chooser" assignedFileTypeKeyPath="inspectedObjectsController.selection.ideInspectedAssignedDataType" resolvedFilePathKeyPath="inspectedObjectsController.selection.ideInspectedResolvedFilePath"/>
+        </sliver>
+    </section>
+    <section>
+        <sliver title="Location">
+            <property type="enumeration" keyPath="inspectedObjectsController.selection.ideInspectedResolutionStrategy" enabledKeyPath="inspectedObjectsController.selection.ideInspectedRelativeLocationIsEditable" insertsNullPlaceholder="YES" nullPlaceholderKeyPath="inspectedObjectsController.selection.ideInspectedNilResolutionStrategyPlaceholder" nilPlaceholderIsSelectable="NO">
+                <option-group enumeratedValuesKeyPath="inspectedObjectsController.selection.ideInspectedStandardResolutionStrategyValues" enumeratedDisplayValuesKeyPath="inspectedObjectsController.selection.ideInspectedStandardResolutionStrategiesDisplayValues" />
+                <option-group enumeratedValuesKeyPath="inspectedObjectsController.selection.ideInspectedCustomResolutionStrategyValues" enumeratedDisplayValuesKeyPath="inspectedObjectsController.selection.ideInspectedCustomResolutionStrategiesDisplayValues" />
+                <option-group enumeratedValuesKeyPath="inspectedObjectsController.selection.ideInspectedMissingResolutionStrategiesValues" enumeratedDisplayValuesKeyPath="inspectedObjectsController.selection.ideInspectedMissingResolutionStrategiesDisplayValues" />
+            </property>
+        </sliver>
+
+        <sliver title="" visibleKeyPath="shouldChooseSingleRelativeLocation">
+            <property type="pathField" editable="false" alwaysShowChooser="true" showLink="false" actionSelector="applyRelativeLocationChoice:"
+                      keyPath="inspectedObjectsController.selection.ideInspectedRelativeLocation"
+                      enabledKeyPath="inspectedObjectsController.selection.ideInspectedRelativeLocationIsEditable"
+                      shouldChooseFileKeyPath="inspectedObjectsController.selection.ideInspectedRelativeLocationShouldChooseFile"
+                      shouldChooseDirKeyPath="inspectedObjectsController.selection.ideInspectedRelativeLocationShouldChooseDirectory"
+                      placeholderKeyPath="inspectedObjectsController.selection.ideInspectedRelativeLocationPlaceholder"
+                      choosePathDefaultFilePathKeyPath="inspectedObjectsController.selection.ideInspectedStartingPlaceForChoosingRelativeLocation"
+                      choosePathMessageKeyPath="inspectedObjectsController.selection.ideInspectedMessageForChoosingRelativeLocation"/>
+        </sliver>
+        
+        <sliver title="" visibleKeyPath="shouldChooseRelativeContainingFolderLocation">
+            <property type="pathField" editable="false" alwaysShowChooser="true" showLink="false" shouldChooseFile="NO" shouldChooseDir="YES" choosePathMessage="Choose folder containing the selected references" actionSelector="applyRelativeLocationChoice:"
+                      keyPath="inspectedObjectsController.selection.ideInspectedRelativeContainingFolderLocation"
+                      enabledKeyPath="inspectedObjectsController.selection.ideInspectedRelativeLocationIsEditable"
+                      placeholderKeyPath="inspectedObjectsController.selection.ideInspectedRelativeLocationContainingFolderPlaceholder"
+                      choosePathDefaultFilePathKeyPath="inspectedObjectsController.selection.ideInspectedStartingPlaceForChoosingRelativeLocationContainingFolder"/>
+        </sliver>
+
+        <sliver title="Full Path">
+            <property type="pathField" keyPath="inspectedObjectsController.selection.ideInspectedExpectedFilePath" editable="false"/>
+        </sliver>
+    </section>
+    <section visibleKeyPath="inspectedObjectsController.selection.ideInspectedShowsDevReigonSection">
+        <sliver title="Dev Region">
+            <property type="pathField" keyPath="inspectedObjectsController.selection.ideInspectedExpectedDevReigonFilePath" editable="false"/>
+        </sliver>
+    </section>
+</slice>

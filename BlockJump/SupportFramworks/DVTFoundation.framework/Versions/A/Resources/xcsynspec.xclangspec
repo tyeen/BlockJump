@@ -1,0 +1,126 @@
+// Xcode Syntax Specification
+(
+
+/****************************************************************************/
+// MARK: Xcode Syntax Specification keywords
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.xcsynspec.identifier";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Words = (
+                "Identifier",
+                "BasedOn",
+                "Name",
+                "Color",
+                "IncludeInPrefs",
+                "IgnoreToken",
+                "IsLink",
+                "URLFormat",
+                "NameFormat",
+                "CanSetFont",
+                "NO",
+                "YES",
+                "IsMark",
+             );
+            Type = "xcode.syntax.keyword";
+            AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
+        };
+    },
+
+/****************************************************************************/
+// MARK: Xcode Language Specification Top-Level
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.xcsynspec";
+        Description = "Xcode Syntax Type Specification Coloring";
+        IncludeInMenu = YES;
+        BasedOn = "xcode.lang.simpleColoring";
+        Name = "Xcode Syntax Type Specification";
+        Syntax = {
+            Tokenizer = "xcode.lang.xcsynspec.lexer";
+            IncludeRules = (
+                "xcode.lang.xcsynspec.block",
+                "xcode.lang.xcsynspec.parenexpr",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+
+/****************************************************************************/
+// MARK: Lexers
+/****************************************************************************/
+
+    // The following rule returns tokens to the other rules
+    {
+        Identifier = "xcode.lang.xcsynspec.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.xcsynspec.identifier",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.number",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.xcsynspec.ruleIdentifier";
+        Syntax = {
+            Tokenizer = "xcode.lang.xcsynspec.lexer";
+            Rules = (
+                "Identifier",
+                "=",
+                "xcode.lang.xcsynspec.ruleIdentifier.name",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.xcsynspec.ruleIdentifier.name";
+        Syntax = {
+            Tokenizer = "xcode.lang.xcsynspec.lexer";
+            Rules = (
+                "xcode.lang.string",
+            );
+            
+            Type = "xcode.syntax.definition.method";
+        };
+    },
+    
+/****************************************************************************/
+// MARK: Blocks
+/****************************************************************************/
+    
+    {
+        Identifier = "xcode.lang.xcsynspec.block";
+        Syntax = {
+            Tokenizer = "xcode.lang.xcsynspec.lexer";
+            Start = "{";
+            End = "}";
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.xcsynspec.ruleIdentifier",
+                "xcode.lang.xcsynspec.parenexpr",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.xcsynspec.parenexpr";
+        Syntax = {
+            Tokenizer = "xcode.lang.xcsynspec.lexer";
+            Start = "(";
+            End = ")";
+            Foldable = YES;
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.xcsynspec.block",
+            );
+        };
+    },
+)
+

@@ -1,0 +1,203 @@
+// Jam language specs
+(
+
+/****************************************************************************/
+// MARK: Keywords
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.jam.keyword";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_.$";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_.()";
+            Words = (
+                "ALWAYS",
+                "DEPENDS",
+                "ECHO",
+                "EXIT",
+                "INCLUDES",
+                "LEAVES",
+                "NOCARE",
+                "NOTFILE",
+                "NOUPDATE",
+                "TEMPORARY",
+                "actions",
+                "bind",
+                "case",
+                "default",
+                "deferred",	// Apple extension
+                "else",
+                "existing",
+                "export",	// Apple extension
+                "for",
+                "if",
+                "ignore",
+                "in",
+                "include",
+                "local",
+                "on",
+                "piecemeal",
+                "quietly",
+                "rule",
+                "switch",
+                "together",
+                "updated",
+                
+                "HDRRULE",
+                "HDRSCAN",
+                "JAMDATE",
+                "JAMSHELL",
+                "JAMUNAME",
+                "JAMVERSION",
+                "LOCATE",
+                "MAC",
+                "NT",
+                "OS",
+                "OS2",
+                "OSPLAT",
+                "OSVER",
+                "SEARCH",
+                "UNIX",
+                "VMS",
+            );
+            Type = "xcode.syntax.keyword";
+            AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
+        };
+    },
+
+
+/****************************************************************************/
+// MARK: Jam Coloring
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.jam";
+        Description = "Jam Coloring";
+        BasedOn = "xcode.lang.simpleColoring";
+        IncludeInMenu = YES;
+        UsesCLikeIndentation = YES;
+        Name = "Jam";
+        Syntax = {
+            Tokenizer = "xcode.lang.jam.lexer.toplevel";
+            IncludeRules = (        // processed in order
+                "xcode.lang.jam.rule",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+    
+    // The following rule returns tokens to the other rules
+    {
+        Identifier = "xcode.lang.jam.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.singleline.pound",
+                "xcode.lang.jam.string",
+                "xcode.lang.string",
+                "xcode.lang.string.backquote",
+                "xcode.lang.number",
+                "xcode.lang.jam.keyword",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.jam.lexer.toplevel";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.singleline.pound",
+                "xcode.lang.jam.string",
+                "xcode.lang.string",
+                "xcode.lang.string.backquote",
+                "xcode.lang.number",
+                "xcode.lang.jam.rule.declarator",
+                "xcode.lang.jam.variable",
+                "xcode.lang.jam.keyword",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.jam.rule";
+        Syntax = {
+            Tokenizer = "xcode.lang.jam.lexer.toplevel";
+            Rules = (
+                "xcode.lang.jam.rule.declarator",
+                "xcode.lang.jam.block",
+            );
+            Type = "xcode.syntax.definition.function";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.jam.rule.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.jam.lexer";
+            Rules = (
+                "rule",
+                "xcode.lang.jam.rule.name",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.jam.rule.name";
+        Syntax = {
+            Tokenizer = "xcode.lang.jam.lexer";
+            Rules = (
+                "xcode.lang.jam.keyword",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.jam.variable";
+        Syntax = {
+            Recursive = YES;
+            Tokenizer = "xcode.lang.jam.lexer";
+            Rules = (
+                "$",
+                "xcode.lang.jam.parenexpr",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.jam.block";
+        Syntax = {
+            // Handle nested blocks
+            Start = "{";
+            End = "}";
+            Recursive = YES;
+            Foldable = YES;
+            IncludeRules = (        // processed in order
+                "xcode.lang.jam.variable",
+                "xcode.lang.jam.parenexpr",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.jam.parenexpr";
+        Syntax = {
+            Tokenizer = "xcode.lang.jam.lexer";
+            Start = "(";
+            End = ")";
+            Recursive = YES;
+            IncludeRules = (
+                "xcode.lang.jam.variable",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.jam.string";
+        Syntax = {
+            Start = "\\\"";
+            EscapeChar = "\\";
+            End = "\\\"";
+            Type = "xcode.syntax.string";
+        };
+    },
+)

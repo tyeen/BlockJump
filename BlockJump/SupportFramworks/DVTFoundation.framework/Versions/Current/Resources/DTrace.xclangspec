@@ -1,0 +1,370 @@
+// DTrace
+(
+
+/****************************************************************************/
+// MARK: DTrace Identifiers
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.dtrace.identifier";
+        Syntax = {
+            StartChars = "@abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$_*";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$_-*";
+            Words = (
+                // keywords from C
+                "char",
+				"const",
+				"double",
+				"enum",
+				"extern",
+				"float",
+				"inline",
+				"int",
+				"long",
+				"short",
+				"signed",
+				"sizeof",
+				"struct",
+				"typedef",
+				"union",
+				"unsigned",
+				"void",
+				"volatile",
+                
+                // keywords from DTrace
+                "offsetof",
+				"self",
+				"string",
+				"stringof",
+				"this",
+				"translator",
+				"xlate",
+            );
+            Type = "xcode.syntax.keyword";
+            AltType = "xcode.syntax.identifier";
+        };
+    },
+
+/****************************************************************************/
+// MARK: DTrace Top-Level
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.dtrace";
+        Description = "DTrace Coloring";
+        BasedOn = "xcode.lang.c";
+        IncludeInMenu = YES;
+        UsesCLikeIndentation = YES;
+        Name = "DTrace";
+        Syntax = {
+            Tokenizer = "xcode.lang.dtrace.lexer";
+            IncludeRules = (
+                "xcode.lang.dtrace.enumblock",
+                "xcode.lang.dtrace.translatorblock",
+                "xcode.lang.dtrace.probe",
+                "xcode.lang.dtrace.block",
+				"xcode.lang.dtrace.bracketexpr",
+				"xcode.lang.dtrace.parenexpr",
+                "xcode.lang.dtrace.typedef",
+			);
+            Type = "xcode.syntax.plain";
+        };
+    },
+    {
+        Identifier = "xcode.lang.dtrace.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.number",
+				"xcode.lang.dtrace.identifier",
+            );
+        };
+    },
+    
+/****************************************************************************/
+// MARK: DTrace Probes
+/****************************************************************************/
+    
+    {
+		Identifier = "xcode.lang.dtrace.probe";
+		Syntax = {
+			Tokenizer = "xcode.lang.dtrace.lexer";
+			Rules = (
+                "xcode.lang.dtrace.probe.names",
+				"xcode.lang.dtrace.probe.predicate?",
+				"xcode.lang.dtrace.block",
+			);
+            Type = "xcode.syntax.definition.function";
+		};
+	},
+    {
+		Identifier = "xcode.lang.dtrace.probe.names";
+		Syntax = {
+			Tokenizer = "xcode.lang.dtrace.lexer";
+            Rules = (
+                "xcode.lang.dtrace.probe.name+",
+            );
+            Type = "xcode.syntax.name.partial";
+		};
+	},
+    {
+		Identifier = "xcode.lang.dtrace.probe.name";
+		Syntax = {
+			Tokenizer = "xcode.lang.dtrace.lexer";
+            Rules = (
+                "xcode.lang.dtrace.probe.name.single",
+                ",?",
+            );
+            Type = "xcode.syntax.name.partial";
+		};
+	},
+    {
+		Identifier = "xcode.lang.dtrace.probe.name.single";
+		Syntax = {
+			Tokenizer = "xcode.lang.dtrace.lexer";
+            Rules = (
+                "xcode.lang.dtrace.probe.name.simple",
+                ":?",
+                "xcode.lang.dtrace.probe.name.simple?",
+                ":?",
+                "xcode.lang.dtrace.probe.name.simple?",
+                ":?",
+                "xcode.lang.dtrace.probe.name.simple?",
+            );
+		};
+	},
+    {
+        Identifier = "xcode.lang.dtrace.probe.name.simple";
+        Syntax = {
+            Tokenizer = "xcode.lang.dtrace.lexer";
+            Rules = (
+                ":|xcode.lang.number|xcode.lang.dtrace.identifier",
+            );
+        };
+    },
+	{
+		Identifier = "xcode.lang.dtrace.probe.predicate";
+		Syntax = {
+			Match = (
+				"\\/[^\\/]*(\\/\\*.*?\\*\\/[^\\/]*)*\\/",	// covers comments inside predicates as well
+			);
+			IncludeRules = (
+				"xcode.lang.dtrace.block.lexer",    // so comments show up coloured properly in predicates
+			);
+		};
+	},
+    
+/****************************************************************************/
+// MARK: DTrace Blocks
+/****************************************************************************/
+    
+    {
+        Identifier = "xcode.lang.dtrace.block.identifier";
+        Syntax = {
+            StartChars = "@abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$_";
+            Words = (
+                // keywords from C
+                "char",
+				"const",
+				"double",
+				"enum",
+				"extern",
+				"float",
+				"inline",
+				"int",
+				"long",
+				"short",
+				"signed",
+				"sizeof",
+				"struct",
+				"typedef",
+				"union",
+				"unsigned",
+				"void",
+				"volatile",
+                
+                // keywords from DTrace
+                "offsetof",
+				"self",
+				"string",
+				"stringof",
+				"this",
+				"translator",
+				"xlate",
+            );
+            Type = "xcode.syntax.keyword";
+            AltType = "xcode.syntax.identifier";
+        };
+    },
+        {
+        Identifier = "xcode.lang.dtrace.block.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.number",
+                "xcode.lang.dtrace.block.identifier",
+
+            );
+        };
+    },
+	{
+        Identifier = "xcode.lang.dtrace.block";
+		Syntax = {
+            Tokenizer = "xcode.lang.dtrace.block.lexer";
+            Start = "{";
+            End = "}";
+            Foldable = YES;
+            IncludeRules = (
+                "xcode.lang.dtrace.bracketexpr",
+				"xcode.lang.dtrace.parenexpr",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.dtrace.enumblock";
+        Syntax = {
+            Tokenizer = "xcode.lang.dtrace.block.lexer";
+            Rules = (
+                "enum",
+                "xcode.lang.dtrace.identifier?",
+                "xcode.lang.dtrace.block",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.dtrace.translatorblock";
+        Syntax = {
+            Tokenizer = "xcode.lang.dtrace.block.lexer";
+            Rules = (
+                "translator",
+                "xcode.lang.dtrace.identifier",
+                "xcode.lang.dtrace.block",
+            );
+        };
+    },
+	{
+		Identifier = "xcode.lang.dtrace.bracketexpr";
+		Syntax = {
+			Tokenizer = "xcode.lang.dtrace.block.lexer";
+			Start = "[";
+			End = "]";
+			Recursive = YES;
+			IncludeRules = (
+                "xcode.lang.dtrace.parenexpr",
+			);
+		};
+	},
+	{
+		Identifier = "xcode.lang.dtrace.parenexpr";
+		Syntax = {
+			Tokenizer = "xcode.lang.dtrace.block.lexer";
+			Start = "(";
+			End = ")";
+			Recursive = YES;
+			IncludeRules = (
+                "xcode.lang.dtrace.bracketexpr",
+			);
+		};
+	},
+    
+/****************************************************************************/
+// MARK: DTrace Typedefs
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.dtrace.typedef.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.dtrace.typedef.end",
+                "xcode.lang.number",
+				"xcode.lang.dtrace.identifier",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.dtrace.typedef.name.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment.headerdoc",
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.completionplaceholder",
+                "xcode.lang.dtrace.typedef.name",
+                "xcode.lang.dtrace.typedef.alias",
+                "xcode.lang.number",
+				"xcode.lang.dtrace.identifier",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.dtrace.typedef";
+        Syntax = {
+            Tokenizer = "xcode.lang.dtrace.typedef.lexer";
+            Start = "typedef";
+            End = "xcode.lang.dtrace.typedef.end";
+            AltEnd = ";";
+            IncludeRules = (
+                "xcode.lang.dtrace.block",
+                "xcode.lang.dtrace.bracketexpr",
+                "xcode.lang.dtrace.parenexpr",
+            );
+            Type = "xcode.syntax.typedef";
+        };
+    },
+    {
+        Identifier = "xcode.lang.dtrace.typedef.name";
+        Syntax = {
+            Tokenizer = "xcode.lang.dtrace.lexer";
+            Rules = (
+                "xcode.lang.dtrace.identifier",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    {
+        Identifier = "xcode.lang.dtrace.typedef.alias";
+        Syntax = {
+            Tokenizer = "xcode.lang.dtrace.lexer";
+            Rules = (
+                "xcode.lang.dtrace.identifier",
+            );
+        };
+    },
+    {
+        Identifier = "xcode.lang.dtrace.typedef.end";
+        Syntax = {
+            Tokenizer = "xcode.lang.dtrace.typedef.name.lexer";
+            Rules = (
+                "xcode.lang.dtrace.typedef.name",
+                "xcode.lang.dtrace.block?",
+                "xcode.lang.dtrace.typedef.alias?",
+                ";"
+            );
+            Type = "xcode.syntax.name.tree";
+        };
+    },
+
+)

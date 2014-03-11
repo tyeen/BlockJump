@@ -1,0 +1,130 @@
+// Pascal language specs
+(
+
+/****************************************************************************/
+// MARK: Keywords
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.pascal.keyword";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            Words = (
+                "and",
+                "array",
+                "begin",
+                "case",
+                "const",
+                "div",
+                "do",
+                "downto",
+                "else",
+                "end",
+                "file",
+                "for",
+                "function",
+                "goto",
+                "if",
+                "implementation",
+                "in",
+                "inherited",
+                "inline",
+                "interface",
+                "label",
+                "mod",
+                "nil",
+                "not",
+                "object",
+                "of",
+                "or",
+                "otherwise",
+                "packed",
+                "procedure",
+                "program",
+                "record",
+                "repeat",
+                "set",
+                "string",
+                "then",
+                "to",
+                "type",
+                "unit",
+                "until",
+                "uses",
+                "var",
+                "while",
+                "with",
+                
+                "Byte",
+                "extended",
+                "extended80",
+                "extended96",
+                "Fixed",
+                "Fract",
+                "Handle",
+                "OSErr",
+                "OSType",
+                "Point",
+                "ProcPtr",
+                "Ptr",
+                "RGBColor",
+                "Rect",
+                "ResType",
+                "SignedByte",
+                "StringPtr",
+                "Str255",
+                "Str31",
+                "Str63",
+                "UniversalProcPtr",
+            );
+            Type = "xcode.syntax.keyword";
+            AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
+        };
+    },
+
+
+/****************************************************************************/
+// MARK: Simple Syntax Coloring
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.pascal";
+        Description = "Pascal Coloring";
+        BasedOn = "xcode.lang.simpleColoring";
+        IncludeInMenu = YES;
+        Name = "Pascal";
+        Syntax = {
+            IncludeRules = (        // processed in order
+                "xcode.lang.pascal.comment.curlybrace",
+                "xcode.lang.pascal.comment",
+                "xcode.lang.string.singlequote",
+                "xcode.lang.number",
+                "xcode.lang.pascal.keyword",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.pascal.comment";
+        Syntax = {
+            Start = "(*";
+            End = "*)";
+            Foldable = YES;
+            IncludeRules = ( "xcode.lang.url", "xcode.lang.url.mail", "xcode.lang.comment.mark" );
+            Type = "xcode.syntax.comment";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.pascal.comment.curlybrace";
+        Syntax = {
+            Start = "{";
+            End = "}";
+            Foldable = YES;
+            IncludeRules = ( "xcode.lang.url", "xcode.lang.url.mail", "xcode.lang.comment.mark" );
+            Type = "xcode.syntax.comment";
+        };
+    },
+)

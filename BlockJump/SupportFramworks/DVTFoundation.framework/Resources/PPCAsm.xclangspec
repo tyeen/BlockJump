@@ -1,0 +1,98 @@
+// PowerPC Assembler language specs
+(
+
+/****************************************************************************/
+// MARK: Keywords
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.asm.ppc.identifier";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$_.";
+            Type = "xcode.syntax.identifier";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.asm.ppc.directive";
+        Syntax = {
+            StartAtBOL = YES;
+            StartChars = ".";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            Type = "xcode.syntax.keyword";
+        };
+    },
+
+/****************************************************************************/
+// MARK: Simple Syntax Coloring
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.asm.ppc";
+        Description = "PowerPC Assembler Coloring";
+        BasedOn = "xcode.lang.simpleColoring";
+        IncludeInMenu = YES;
+        Name = "Assembly (PowerPC)";
+        Syntax = {
+            Tokenizer = "xcode.lang.asm.ppc.lexer";
+            IncludeRules = (
+                "xcode.lang.asm.ppc.label"
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+    {
+        Identifier = "xcode.lang.asm.ppc.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.comment.singleline.pound",
+                "xcode.lang.asm.ppc.comment.singleline",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.number",
+                "xcode.lang.asm.ppc.directive",
+                "xcode.lang.asm.ppc.identifier",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.asm.ppc.comment.singleline";
+        Syntax = {
+            Start = ";";
+            EscapeChar = "\\";
+            End = "\n";
+            IncludeRules = ( "xcode.lang.url", "xcode.lang.url.mail", "xcode.lang.comment.mark" );
+            Type = "xcode.syntax.comment";
+        };
+    },
+
+    {
+        Identifier = "xcode.lang.asm.ppc.label";
+        Syntax = {
+            StartAtBOL = YES;
+            Tokenizer = "xcode.lang.asm.ppc.lexer";
+            Rules = (
+                "xcode.lang.asm.ppc.label.name",
+                ":",
+            );
+            Type = "xcode.syntax.definition.function";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.asm.ppc.label.name";
+        Syntax = {
+            StartAtBOL = YES;
+            Tokenizer = "xcode.lang.asm.ppc.lexer";
+            Rules = (
+                "xcode.lang.asm.ppc.identifier",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+
+)

@@ -1,0 +1,182 @@
+// Rez language specs
+(
+
+/****************************************************************************/
+// MARK: Keywords
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.rez.identifier";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_$";
+            Words = (
+                "$$ArrayIndex",
+                "$$Arrayindex",
+                "$$Attributes",
+                "$$BitField",
+                "$$Bitfield",
+                "$$Byte",
+                "$$Countof",
+                "$$CountOf",
+                "$$Date",
+                "$$Day",
+                "$$Format",
+                "$$Hour",
+                "$$ID",
+                "$$Long",
+                "$$Minute",
+                "$$Month",
+                "$$Name",
+                "$$PackedSize",
+                "$$Packedsize",
+                "$$Resource",
+                "$$ResourceSize",
+                "$$Resourcesize",
+                "$$Second",
+                "$$Shell",
+                "$$Time",
+                "$$Type",
+                "$$Version",
+                "$$Weekday",
+                "$$Word",
+                "$$Year",
+                "align",
+                "array",
+                "as",
+                "binary",
+                "bit",
+                "bitstring",
+                "boolean",
+                "byte",
+                "case",
+                "char",
+                "cstring",
+                "data",
+                "decimal",
+                "fill",
+                "hex",
+                "include",
+                "integer",
+                "key",
+                "literal",
+                "long",
+                "longint",
+                "nibble",
+                "octal",
+                "point",
+                "pstring",
+                "read",
+                "rect",
+                "resource",
+                "string",
+                "switch",
+                "type",
+                "unsigned",
+                "wide",
+                "word",
+                "wstring",
+            );
+            Type = "xcode.syntax.keyword";
+            AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
+        };
+    },
+
+
+/****************************************************************************/
+// MARK: Simple Syntax Coloring
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.rez";
+        Description = "Rez Shell Coloring";
+        BasedOn = "xcode.lang.simpleColoring";
+        IncludeInMenu = YES;
+        UsesCLikeIndentation = YES;
+        Name = "Rez";
+        Syntax = {
+            Tokenizer = "xcode.lang.rez.lexer";
+            IncludeRules = (
+                "xcode.lang.rez.resource",
+                "xcode.lang.rez.block",
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.rez.lexer";
+        Syntax = {
+            IncludeRules = (
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.c.preprocessor",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.number",
+                "xcode.lang.rez.identifier",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.rez.resource";
+        Syntax = {
+            Tokenizer = "xcode.lang.rez.lexer";
+            Rules = (
+                "xcode.lang.rez.resource.declarator",
+                "xcode.lang.rez.block",
+            );
+            Type = "xcode.syntax.definition.function";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.rez.resource.declarator";
+        Syntax = {
+            Tokenizer = "xcode.lang.rez.lexer";
+            Rules = (
+                "resource|data",
+                "xcode.lang.rez.resource.name",
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.rez.resource.name";
+        Syntax = {
+            Tokenizer = "xcode.lang.rez.lexer";
+            Rules = (
+                "xcode.lang.character",
+                "xcode.lang.rez.parenexpr",
+            );
+            Type = "xcode.syntax.name.partial";
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.rez.block";
+        Syntax = {
+            Tokenizer = "xcode.lang.rez.lexer";
+            Start = "{";
+            End = "}";
+            Recursive = YES;
+            Foldable = YES;
+            IncludeRules = (
+                "xcode.lang.rez.parenexpr"
+            );
+        };
+    },
+    
+    {
+        Identifier = "xcode.lang.rez.parenexpr";
+        Syntax = {
+            Tokenizer = "xcode.lang.rez.lexer";
+            Start = "(";
+            End = ")";
+            Recursive = YES;
+            IncludeRules = (
+            );
+        };
+    },
+)

@@ -1,0 +1,33 @@
+//
+//  IDEDefaultKeyBindings.idekeybindings
+//  IDEKit
+//
+//  Copyright 2010 Apple Inc. All rights reserved.
+//
+
+{
+    "Text Key Bindings" = {
+        "Version" = "3";
+        "Key Bindings" = {
+            // SubWord
+            "^\Uf702" = "moveSubWordBackward:";                     // Control-Left Arrow
+            "^\Uf703" = "moveSubWordForward:";                      // Control-Right Arrow
+            "^$\Uf702" = "moveSubWordBackwardAndModifySelection:";  // Control-Shift-Left Arrow
+            "^$\Uf703" = "moveSubWordForwardAndModifySelection:";   // Control-Shift-Right Arrow
+            "^\Uf728" = "deleteSubWordForward:";                    // Control-Delete
+            "^\U007f" = "deleteSubWordBackward:";                   // Control-Forward Delete
+
+            // Completion
+            "^." = "nextCompletion:";       // Control-.
+            "^>" = "previousCompletion:";   // Control->
+
+            // Mark and point
+            "^\\@" = "setMark:";
+            "^w" = "deleteToMark:";
+            "^x" = {
+                "^x" = "swapWithMark:";
+                "^m" = "selectToMark:";
+            };
+        };
+    };
+}

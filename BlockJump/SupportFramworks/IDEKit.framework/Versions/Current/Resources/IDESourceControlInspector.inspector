@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   IDESourceControlInspector.inspector
+   IDEKit
+
+   Created by Dimitri Dupuis-Latour on day 9690 of his life.
+   Copyright 2010 Apple Inc. All rights reserved.
+-->
+
+<slice>
+    <section>
+        <sliver title="Repository">
+            <property type="custom" class="IDESourceControlInspectorRepositoryProperty" nibName="IDESourceControlRepositoryStatus" baseline="5.0"/>
+        </sliver>
+        <sliver title="Type">
+            <property type="string" keyPath="inspectedObjectsController.selection.navigableItem_sourceControlExtensionString" editable="false"/>
+        </sliver>
+        <sliver title="Current Branch">
+            <property type="string" keyPath="inspectedObjectsController.selection.navigableItem_sourceControlCurrentBranch" editable="false"/>
+        </sliver>
+    </section>
+    <section>
+        <sliver title="Version">
+            <property type="string" keyPath="inspectedObjectsController.selection.navigableItem_versionAndServerStatus" editable="false"/>
+        </sliver>
+        <sliver title="Status">
+            <property type="custom" class="IDESourceControlInspectorStatusProperty" nibName="IDESourceControlTextAndBubbleStatus" baseline="5.0"/>
+        </sliver>
+        
+        <!-- rdar://8736564 property type="pathField" doesn't return 'Multiple Values' placeholder -->
+        <sliver title="Location">
+            <property type="string" editable="false" keyPath="inspectedObjectsController.selection.sourceControlInspectorRepositoryURLString"/>
+        </sliver>
+    </section>
+</slice>

@@ -1,0 +1,155 @@
+// Dylan language specs
+(
+
+/****************************************************************************/
+// MARK: Keywords
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.dylan.keyword";
+        Syntax = {
+            StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$\!&*<=>|^$%@_";
+            Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-+~?/>";
+            Words = (
+                "module",
+                "method",
+                "class",
+                "slot",
+                "afterwards",
+                "cleanup",
+                "exception",
+                "local",
+                "constant",
+                "function",
+                "variable",
+                "generic",
+                "define",
+                "end",
+                "handler",
+                "let",
+                "macro",
+                "otherwise",
+                "begin",
+                "block",
+                "case",
+                "for",
+                "if",
+                "select",
+                "unless",
+                "until",
+                "while",
+                "open",
+                "primary",
+                "free",
+                "concrete",
+                "abstract",
+                "sealed",
+                "else",
+                "elseif",
+                "#t",
+                "#f",
+                "#next",
+                "#rest",
+                "#key",
+                "#all-keys",
+                
+                "<object>",
+                "<type>",
+                "<class>",
+                "<singleton>",
+                "<character>",
+                "<symbol>",
+                "<boolean>",
+                "<number>",
+                "<complex>",
+                "<real>",
+                "<float>",
+                "<single-float>",
+                "<double-float>",
+                "<extended-float>",
+                "<rational>",
+                "<integer>",
+                "<collection>",
+                "<explicit-key-collection>",
+                "<sequence>",
+                "<mutable-collection>",
+                "<mutable-explicit-key-collection>",
+                "<mutable-sequence>",
+                "<stretchy-collection>",
+                "<array>",
+                "<vector>",
+                "<simple-vector>",
+                "<simple-object-vector>",
+                "<stretchy-vector>",
+                "<deque>",
+                "<list>",
+                "<pair>",
+                "<range>",
+                "<string>",
+                "<byte-string>",
+                "<unicode-string>",
+                "<table>",
+                "<object-table>",
+                "<function>",
+                "<generic-function>",
+                "<method>",
+                "<condition>",
+                "<serious-condition>",
+                "<error>",
+                "<simple-error>",
+                "<type-error>",
+                "<sealed-object-error>",
+                "<warning>",
+                "<simple-warning>",
+                "<restart>",
+                "<simple-restart>",
+                "<abort>",
+            );
+            Type = "xcode.syntax.keyword";
+            AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
+        };
+    },
+
+
+/****************************************************************************/
+// MARK: Simple Syntax Coloring
+/****************************************************************************/
+
+    {
+        Identifier = "xcode.lang.dylan";
+        Description = "Dylan Coloring";
+        BasedOn = "xcode.lang.simpleColoring";
+        IncludeInMenu = YES;
+        Name = "Dylan";
+        Syntax = {
+            IncludeRules = (        // processed in order
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.number",
+                "xcode.lang.dylan.keyword",
+                "xcode.lang.dylan.block"
+            );
+            Type = "xcode.syntax.plain";
+        };
+    },
+    {
+        Identifier = "xcode.lang.dylan.block";
+        Syntax = {
+            // Handle nested blocks
+            Start = "{";
+            End = "}";
+            Recursive = YES;
+            IncludeRules = (        // processed in order
+                "xcode.lang.comment",
+                "xcode.lang.comment.singleline",
+                "xcode.lang.string",
+                "xcode.lang.character",
+                "xcode.lang.number",
+                "xcode.lang.dylan.keyword",
+                "xcode.lang.dylan.block"
+            );
+        };
+    },
+)

@@ -1,0 +1,127 @@
+// Xcode Text Macro Specification
+(
+
+/****************************************************************************/
+// MARK: Xcode Text Macro keywords
+/****************************************************************************/
+
+{
+    Identifier = "xcode.lang.xctxtmacro.identifier";
+    Syntax = {
+        StartChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+        Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+        Words = (
+            "Identifier",
+            "BasedOn",
+            "Name",
+            "DefaultSettings",
+            "IncludeContexts",
+            "ExcludeContexts",
+            "TextString",
+            "CompletionPrefix",
+            "IsMenu",
+            "IsMenuItem",
+            "CycleList",
+            "OnlyAtBOL",
+            "NO",
+            "YES",
+        );
+        Type = "xcode.syntax.keyword";
+        AltType = "xcode.syntax.identifier";    // non-keywords are identifiers
+    };
+},
+
+/****************************************************************************/
+// MARK: Xcode Text Macro Specification Top-Level
+/****************************************************************************/
+
+{
+    Identifier = "xcode.lang.xctxtmacro";
+    Description = "Xcode Text Macro Coloring";
+    BasedOn = "xcode.lang.simpleColoring";
+    IncludeInMenu = YES;
+    Name = "Xcode Text Macro Specification";
+    Syntax = {
+        Tokenizer = "xcode.lang.xctxtmacro.lexer";
+        IncludeRules = (
+            "xcode.lang.xctxtmacro.block",
+            "xcode.lang.xctxtmacro.parenexpr",
+        );
+        Type = "xcode.syntax.plain";
+    };
+},
+
+/****************************************************************************/
+// MARK: Lexers
+/****************************************************************************/
+
+// The following rule returns tokens to the other rules
+{
+    Identifier = "xcode.lang.xctxtmacro.lexer";
+    Syntax = {
+        IncludeRules = (
+            "xcode.lang.comment",
+            "xcode.lang.comment.singleline",
+            "xcode.lang.xctxtmacro.identifier",
+            "xcode.lang.string",
+            "xcode.lang.character",
+            "xcode.lang.number",
+        );
+    };
+},
+{
+    Identifier = "xcode.lang.xctxtmacro.ruleIdentifier";
+    Syntax = {
+        Tokenizer = "xcode.lang.xctxtmacro.lexer";
+        Rules = (
+            "Identifier",
+            "=",
+            "xcode.lang.xctxtmacro.ruleIdentifier.name",
+        );
+    };
+},
+{
+    Identifier = "xcode.lang.xctxtmacro.ruleIdentifier.name";
+    Syntax = {
+        Tokenizer = "xcode.lang.xctxtmacro.lexer";
+        Rules = (
+            "xcode.lang.string",
+        );
+        
+        Type = "xcode.syntax.definition.method";
+    };
+},
+
+/****************************************************************************/
+// MARK: Blocks
+/****************************************************************************/
+
+{
+    Identifier = "xcode.lang.xctxtmacro.block";
+    Syntax = {
+        Tokenizer = "xcode.lang.xctxtmacro.lexer";
+        Start = "{";
+        End = "}";
+        Foldable = YES;
+        Recursive = YES;
+        IncludeRules = (
+            "xcode.lang.xctxtmacro.ruleIdentifier",
+            "xcode.lang.xctxtmacro.parenexpr",
+        );
+    };
+},
+{
+    Identifier = "xcode.lang.xctxtmacro.parenexpr";
+    Syntax = {
+        Tokenizer = "xcode.lang.xctxtmacro.lexer";
+        Start = "(";
+        End = ")";
+        Foldable = YES;
+        Recursive = YES;
+        IncludeRules = (
+            "xcode.lang.xctxtmacro.block",
+        );
+    };
+},
+)
+
