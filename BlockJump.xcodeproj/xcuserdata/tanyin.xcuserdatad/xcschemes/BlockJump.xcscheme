@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B17EA25A18CEA6100058644A"
-               BuildableName = "BlockJump.bundle"
+               BuildableName = "BlockJump.xcplugin"
                BlueprintName = "BlockJump"
                ReferencedContainer = "container:BlockJump.xcodeproj">
             </BuildableReference>

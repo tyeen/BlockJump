@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B17EA25F18CEA6100058644A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17EA25E18CEA6100058644A /* Cocoa.framework */; };
 		B17EA26918CEA6100058644A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B17EA26718CEA6100058644A /* InfoPlist.strings */; };
+		B17EA27218CEADCB0058644A /* BlockJump.m in Sources */ = {isa = PBXBuildFile; fileRef = B17EA27118CEADCB0058644A /* BlockJump.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B17EA25B18CEA6100058644A /* BlockJump.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlockJump.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		B17EA25E18CEA6100058644A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		B17EA25B18CEA6100058644A /* BlockJump.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlockJump.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		B17EA26118CEA6100058644A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		B17EA26218CEA6100058644A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B17EA26318CEA6100058644A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		B17EA26618CEA6100058644A /* BlockJump-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlockJump-Info.plist"; sourceTree = "<group>"; };
 		B17EA26818CEA6100058644A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B17EA26A18CEA6100058644A /* BlockJump-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlockJump-Prefix.pch"; sourceTree = "<group>"; };
+		B17EA27018CEADCB0058644A /* BlockJump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockJump.h; sourceTree = "<group>"; };
+		B17EA27118CEADCB0058644A /* BlockJump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockJump.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,7 +27,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B17EA25F18CEA6100058644A /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,7 +45,7 @@
 		B17EA25C18CEA6100058644A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B17EA25B18CEA6100058644A /* BlockJump.bundle */,
+				B17EA25B18CEA6100058644A /* BlockJump.xcplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -54,7 +53,6 @@
 		B17EA25D18CEA6100058644A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B17EA25E18CEA6100058644A /* Cocoa.framework */,
 				B17EA26018CEA6100058644A /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -64,7 +62,6 @@
 			isa = PBXGroup;
 			children = (
 				B17EA26118CEA6100058644A /* Foundation.framework */,
-				B17EA26218CEA6100058644A /* CoreData.framework */,
 				B17EA26318CEA6100058644A /* AppKit.framework */,
 			);
 			name = "Other Frameworks";
@@ -74,6 +71,8 @@
 			isa = PBXGroup;
 			children = (
 				B17EA26518CEA6100058644A /* Supporting Files */,
+				B17EA27018CEADCB0058644A /* BlockJump.h */,
+				B17EA27118CEADCB0058644A /* BlockJump.m */,
 			);
 			path = BlockJump;
 			sourceTree = "<group>";
@@ -105,7 +104,7 @@
 			);
 			name = BlockJump;
 			productName = BlockJump;
-			productReference = B17EA25B18CEA6100058644A /* BlockJump.bundle */;
+			productReference = B17EA25B18CEA6100058644A /* BlockJump.xcplugin */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -150,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B17EA27218CEADCB0058644A /* BlockJump.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,12 +241,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BlockJump/BlockJump-Prefix.pch";
 				INFOPLIST_FILE = "BlockJump/BlockJump-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = bundle;
+				WRAPPER_EXTENSION = xcplugin;
 			};
 			name = Debug;
 		};
@@ -254,12 +256,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BlockJump/BlockJump-Prefix.pch";
 				INFOPLIST_FILE = "BlockJump/BlockJump-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = bundle;
+				WRAPPER_EXTENSION = xcplugin;
 			};
 			name = Release;
 		};
@@ -282,6 +286,7 @@
 				B17EA26F18CEA6100058644A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
