@@ -26,6 +26,11 @@
 		B1E5D5B518CEB34300F9C606 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = BlockJump/SupportFramworks/DVTFoundation.framework; sourceTree = "<group>"; };
 		B1E5D5B718CEB34D00F9C606 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = BlockJump/SupportFramworks/DVTKit.framework; sourceTree = "<group>"; };
 		B1E5D5B918CEB35500F9C606 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = BlockJump/SupportFramworks/IDEKit.framework; sourceTree = "<group>"; };
+		B1E5D5BC18CEB3F500F9C606 /* DVTFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTFoundation.h; sourceTree = "<group>"; };
+		B1E5D5BD18CEB3F500F9C606 /* DVTKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTKit.h; sourceTree = "<group>"; };
+		B1E5D5BE18CEB3F500F9C606 /* IDEFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEFoundation.h; sourceTree = "<group>"; };
+		B1E5D5BF18CEB3F500F9C606 /* IDEKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEKit.h; sourceTree = "<group>"; };
+		B1E5D5C018CEB3F500F9C606 /* IDESourceEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDESourceEditor.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +87,7 @@
 		B17EA26418CEA6100058644A /* BlockJump */ = {
 			isa = PBXGroup;
 			children = (
+				B1E5D5BB18CEB38800F9C606 /* Xcode Headers */,
 				B17EA26518CEA6100058644A /* Supporting Files */,
 				B17EA27018CEADCB0058644A /* BlockJump.h */,
 				B17EA27118CEADCB0058644A /* BlockJump.m */,
@@ -97,6 +103,18 @@
 				B17EA26A18CEA6100058644A /* BlockJump-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B1E5D5BB18CEB38800F9C606 /* Xcode Headers */ = {
+			isa = PBXGroup;
+			children = (
+				B1E5D5BC18CEB3F500F9C606 /* DVTFoundation.h */,
+				B1E5D5BD18CEB3F500F9C606 /* DVTKit.h */,
+				B1E5D5BE18CEB3F500F9C606 /* IDEFoundation.h */,
+				B1E5D5BF18CEB3F500F9C606 /* IDEKit.h */,
+				B1E5D5C018CEB3F500F9C606 /* IDESourceEditor.h */,
+			);
+			name = "Xcode Headers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
