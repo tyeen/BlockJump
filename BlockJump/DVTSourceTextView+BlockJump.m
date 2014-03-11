@@ -93,6 +93,7 @@
       // There is no next landmark, which means we've reached bottom.
       // We need to check this last landmark(or may be the unique one) to see if it is another container,
       // like @implementation or @interface.(from my DEBUG log, I can see their type is smaller than 3...
+
       if (item.type > 3 || item.children == nil || item.children.count == 0) {
         ret = item.nameRange;
       } else {
@@ -101,7 +102,14 @@
       break;
     } else if (currRange.location > (item.range.location + item.range.length)
                && currRange.location <= (nextItem.range.location + nextItem.range.length)) {
-      ret = item.nameRange;
+      // The caret is at the position in the range of the "next" landmark.
+      // It's still necessary to check if the "next" landmark is a "scope" like @implementaion or @interface.
+
+      if (nextItem.type > 3 || nextItem.children == nil || nextItem.children.count == 0) {
+        ret = item.nameRange;
+      } else {
+        ret = [self _bj_findJumpRangeAboveRange:currRange inTopLandmark:nextItem];
+      }
       break;
     }
   }
@@ -155,8 +163,14 @@
         break;
       }
     } else if (currRange.location >= item.range.location && currRange.location < nextItem.range.location) {
-      // We're in a perfect situation: the current caret is just between these two landmarks.
-      ret = nextItem.nameRange;
+      // The caret is at the position in the range of the landmark which is iterating.
+      // It's still necessary to check if this landmark is a "scope" like @implementaion or @interface.
+
+      if (item.type > 3 || item.children == nil || item.children.count == 0) {
+        ret = nextItem.nameRange;
+      } else {
+        ret = [self _bj_findJumpRangeBelowRange:currRange inTopLandmark:item];
+      }
       break;
     }
   }
@@ -165,3 +179,5 @@
 }
 
 @end
+
+#define TEXT
