@@ -12,6 +12,7 @@
 		B1E5D5B618CEB34300F9C606 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E5D5B518CEB34300F9C606 /* DVTFoundation.framework */; };
 		B1E5D5B818CEB34D00F9C606 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E5D5B718CEB34D00F9C606 /* DVTKit.framework */; };
 		B1E5D5BA18CEB35500F9C606 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E5D5B918CEB35500F9C606 /* IDEKit.framework */; };
+		B1E5D5C318CEB42A00F9C606 /* NSObject+Swizzler.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E5D5C218CEB42A00F9C606 /* NSObject+Swizzler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,8 @@
 		B1E5D5BE18CEB3F500F9C606 /* IDEFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEFoundation.h; sourceTree = "<group>"; };
 		B1E5D5BF18CEB3F500F9C606 /* IDEKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEKit.h; sourceTree = "<group>"; };
 		B1E5D5C018CEB3F500F9C606 /* IDESourceEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDESourceEditor.h; sourceTree = "<group>"; };
+		B1E5D5C118CEB42A00F9C606 /* NSObject+Swizzler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Swizzler.h"; sourceTree = "<group>"; };
+		B1E5D5C218CEB42A00F9C606 /* NSObject+Swizzler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Swizzler.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +90,8 @@
 		B17EA26418CEA6100058644A /* BlockJump */ = {
 			isa = PBXGroup;
 			children = (
+				B1E5D5C118CEB42A00F9C606 /* NSObject+Swizzler.h */,
+				B1E5D5C218CEB42A00F9C606 /* NSObject+Swizzler.m */,
 				B1E5D5BB18CEB38800F9C606 /* Xcode Headers */,
 				B17EA26518CEA6100058644A /* Supporting Files */,
 				B17EA27018CEADCB0058644A /* BlockJump.h */,
@@ -180,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B17EA27218CEADCB0058644A /* BlockJump.m in Sources */,
+				B1E5D5C318CEB42A00F9C606 /* NSObject+Swizzler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
