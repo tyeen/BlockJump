@@ -52,9 +52,6 @@
     currLandmark = topLandmark;
   }
 
-  NSLog(@"%s currentRange=%@, top_landmark=%@\n curr_landmark=[type: %d, other: %@]", __FUNCTION__,
-        NSStringFromRange(currentRange), topLandmark, currLandmark.type, currLandmark);
-
   if (currLandmark != nil && currLandmark.children != nil) {
     NSRange targetRange;
     switch (direction) {
@@ -76,8 +73,6 @@
 
 - (NSRange)_bj_findJumpRangeBelowLandmark:(DVTSourceLandmarkItem *)currLandmark currentLocation:(NSUInteger)currLoc
 {
-  NSLog(@"%s curr_landmark: [type=%d, range=%@, nameRange=%@]", __FUNCTION__,
-        currLandmark.type, NSStringFromRange(currLandmark.range), NSStringFromRange(currLandmark.nameRange));
   NSRange ret = currLandmark.nameRange;
   BOOL done = NO;
 
@@ -109,7 +104,6 @@
       DVTSourceLandmarkItem *firstItem = currLandmark.children[0];
       if (currLoc < firstItem.range.location) {
         ret = firstItem.nameRange;
-        NSLog(@"use first_item.namerange: %@", NSStringFromRange(ret));
         done = YES;
       }
     }
@@ -118,7 +112,6 @@
       DVTSourceLandmarkItem *lastItem = currLandmark.children[currLandmark.children.count - 1];
       if (currLoc >= (lastItem.range.location + lastItem.range.length)) {
         ret = NSMakeRange(currLandmark.range.location + currLandmark.range.length, 0);
-        NSLog(@"use container's bottom: %@", NSStringFromRange(ret));
         done = YES;
       }
     }
@@ -181,9 +174,6 @@
 
 - (NSRange)_bj_findJumpRangeAboveLandmark:(DVTSourceLandmarkItem *)currLandmark currentLocation:(NSUInteger)currLoc
 {
-  NSLog(@"%s curr_landmark: [type=%d, range=%@, nameRange=%@]", __FUNCTION__,
-        currLandmark.type, NSStringFromRange(currLandmark.range), NSStringFromRange(currLandmark.nameRange));
-
   NSRange ret = currLandmark.nameRange;
   BOOL done = NO;
 
@@ -201,7 +191,6 @@
       // In a gap between the top of this container and the top of the first child item?
       DVTSourceLandmarkItem *firstItem = currLandmark.children[0];
       if (currLoc <= firstItem.range.location) {
-        NSLog(@"use first_item.namerange: %@", NSStringFromRange(ret));
         ret = currLandmark.nameRange;
         done = YES;
       }
@@ -211,7 +200,6 @@
       // In a gap between the bottom of the last child item and the bottom of this container?
       DVTSourceLandmarkItem *lastItem = currLandmark.children[currLandmark.children.count - 1];
       if (currLoc >= lastItem.range.location + lastItem.range.length) {
-        NSLog(@"use last_item.namerange: %@", NSStringFromRange(ret));
         ret = lastItem.nameRange;
         done = YES;
       }
