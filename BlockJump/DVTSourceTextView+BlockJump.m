@@ -373,7 +373,11 @@
 
         if (nil == nextItem) {
           // Reached bottom.
-          ret = item.nameRange;
+          if (item.type <= 3) {
+            ret = [self _bj_findJumpRangeAboveLandmark:item currentLocation:currLoc];
+          } else {
+            ret = item.nameRange;
+          }
           done = YES;
           break;
         }
