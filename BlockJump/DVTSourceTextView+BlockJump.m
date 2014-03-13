@@ -397,5 +397,3 @@
 }
 
 @end
-
-#define TEXT
