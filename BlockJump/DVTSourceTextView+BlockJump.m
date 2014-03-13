@@ -221,7 +221,7 @@
 
     if (!done) {
       NSUInteger loopCount = currLandmark.children.count;
-      for (int i = 0; i < loopCount; i++) {
+      for (NSUInteger i = 0; i < loopCount; i++) {
         DVTSourceLandmarkItem *item = currLandmark.children[i];
         DVTSourceLandmarkItem *nextItem = (i + 1 >= loopCount) ? nil : currLandmark.children[i + 1];
 
@@ -275,9 +275,14 @@
             break;
           }
 
-          if (NSLocationInRange(currLoc, nextItem.nameRange)
-              || NSLocationInRange(currLoc, item.range)) {
-            ret = item.nameRange;
+          if (currLoc >= item.range.location
+              && currLoc <= nextItem.nameRange.location + nextItem.nameRange.length) {
+            // If the target is a container, we need to check inside instead of just jumping to its name range.
+            if (item.type <= 3) {
+              ret = [self _bj_findJumpRangeAboveLandmark:item currentLocation:currLoc];
+            } else {
+              ret = item.nameRange;
+            }
             done = YES;
             break;
           }
