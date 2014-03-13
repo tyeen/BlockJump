@@ -189,7 +189,7 @@
         break;
       }
 
-      if (currLoc > item.range.location && currLoc < nextItem.range.location) {
+      if (currLoc >= item.range.location && currLoc < nextItem.range.location) {
         ret = nextItem.nameRange;
         done = YES;
         break;
