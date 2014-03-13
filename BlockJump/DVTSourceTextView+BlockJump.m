@@ -92,9 +92,15 @@
       default:
         break;
     }
-    [self setSelectedRange:targetRange];
-    [self scrollRangeToVisible:targetRange];
+    [self _bj_jumpTo:targetRange];
   }
+}
+
+- (void)_bj_jumpTo:(NSRange)targetRange
+{
+  [self setSelectedRange:targetRange];
+  [self scrollRangeToVisible:targetRange];
+  [self showFindIndicatorForRange:targetRange];
 }
 
 /**
