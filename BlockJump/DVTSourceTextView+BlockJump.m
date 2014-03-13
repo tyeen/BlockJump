@@ -78,7 +78,7 @@
 {
   NSLog(@"%s curr_landmark: [type=%d, range=%@, nameRange=%@]", __FUNCTION__,
         currLandmark.type, NSStringFromRange(currLandmark.range), NSStringFromRange(currLandmark.nameRange));
-  NSRange ret = currLandmark.range;
+  NSRange ret = currLandmark.nameRange;
   BOOL done = NO;
 
   if (currLandmark.type <= 3) {
@@ -184,7 +184,7 @@
   NSLog(@"%s curr_landmark: [type=%d, range=%@, nameRange=%@]", __FUNCTION__,
         currLandmark.type, NSStringFromRange(currLandmark.range), NSStringFromRange(currLandmark.nameRange));
 
-  NSRange ret = currLandmark.range;
+  NSRange ret = currLandmark.nameRange;
   BOOL done = NO;
 
   if (currLandmark.type <= 3 && currLoc > (currLandmark.nameRange.location + currLandmark.nameRange.length)) {
