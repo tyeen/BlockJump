@@ -150,7 +150,7 @@
     }
   } else {
     // So this landmark is not a container. We'll gothrough its parent landmark to find out where we are.
-    DVTSourceLandmarkItem *parentItem = currLandmark.parent;
+    DVTSourceLandmarkItem *parentItem = currLandmark.type == 0 ? currLandmark : currLandmark.parent;
     if (nil == parentItem || parentItem.children == nil || parentItem.children.count <= 0) {
       // fail-safe check
       done = YES;
@@ -241,7 +241,7 @@
     // This landmark is not a container, or the caret is not inside this container.
     // We'll search from this landmark's parent landmark to find the appropriate location.
 
-    DVTSourceLandmarkItem *parentLandmark = currLandmark.parent;
+    DVTSourceLandmarkItem *parentLandmark = currLandmark.type == 0 ? currLandmark : currLandmark.parent;
     // fail-safe check
     if (nil == parentLandmark || parentLandmark.children == nil || parentLandmark.children.count <= 0) {
       done = YES;
