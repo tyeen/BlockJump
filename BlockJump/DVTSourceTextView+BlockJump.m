@@ -181,6 +181,9 @@
 
 - (NSRange)_bj_findJumpRangeAboveLandmark:(DVTSourceLandmarkItem *)currLandmark currentLocation:(NSUInteger)currLoc
 {
+  NSLog(@"%s curr_landmark: [type=%d, range=%@, nameRange=%@]", __FUNCTION__,
+        currLandmark.type, NSStringFromRange(currLandmark.range), NSStringFromRange(currLandmark.nameRange));
+
   NSRange ret = currLandmark.range;
   BOOL done = NO;
 
@@ -247,7 +250,13 @@
       // If so, we need to move to the parent landmark's name range.
       DVTSourceLandmarkItem *firstItem = parentLandmark.children[0];
       if (NSLocationInRange(currLoc, firstItem.nameRange)) {
-        ret = parentLandmark.nameRange;
+        if (parentLandmark.type > 0) {
+          // Should not move to anywhere when parent is top-level landmark,
+          // because top-level landmark's nameRange == its range.
+          // So when we got into that situation, it means the caret has been
+          // reached top most of the source file.
+          ret = parentLandmark.nameRange;
+        }
         done = YES;
       }
 
