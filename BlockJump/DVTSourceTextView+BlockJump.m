@@ -374,7 +374,11 @@
         if (nil == nextItem) {
           // Reached bottom.
           if (item.type <= 3) {
-            ret = [self _bj_findJumpRangeAboveLandmark:item currentLocation:currLoc];
+            if (item.children != nil && item.children.count > 0) {
+              ret = ((DVTSourceLandmarkItem *)item.children[item.children.count - 1]).nameRange;
+            } else {
+              ret = item.nameRange;
+            }
           } else {
             ret = item.nameRange;
           }
@@ -386,7 +390,11 @@
             && currLoc <= nextItem.nameRange.location + nextItem.nameRange.length) {
           // If the target is a container, we need to check inside instead of just jumping to its name range.
           if (item.type <= 3) {
-            ret = [self _bj_findJumpRangeAboveLandmark:item currentLocation:currLoc];
+            if (item.children != nil && item.children.count > 0) {
+              ret = ((DVTSourceLandmarkItem *)item.children[item.children.count - 1]).nameRange;
+            } else {
+              ret = item.nameRange;
+            }
           } else {
             ret = item.nameRange;
           }
