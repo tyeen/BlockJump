@@ -41,16 +41,21 @@
   NSRange currentRange = self.selectedRange;
   DVTTextStorage *sourceStorage = self.textStorage;
   DVTSourceLandmarkItem *topLandmark = sourceStorage.topSourceLandmark;
-  DVTSourceLandmarkItem *currLandmark = [sourceStorage sourceLandmarkAtCharacterIndex:currentRange.location];
-  if (nil == topLandmark || nil == currLandmark) {
-    NSLog(@"%s ignore because top_landmark=%@ curr_landmark=%@]", __FUNCTION__, topLandmark, currLandmark);
+  if (nil == topLandmark) {
+    NSLog(@"%s ignore because top_landmark is null.", __FUNCTION__);
     return;
+
+  }
+
+  DVTSourceLandmarkItem *currLandmark = [sourceStorage sourceLandmarkAtCharacterIndex:currentRange.location];
+  if (nil == currLandmark) {
+    currLandmark = topLandmark;
   }
 
   NSLog(@"%s currentRange=%@, top_landmark=%@\n curr_landmark=[type: %d, other: %@]", __FUNCTION__,
         NSStringFromRange(currentRange), topLandmark, currLandmark.type, currLandmark);
 
-  if (topLandmark != nil && topLandmark.children != nil) {
+  if (currLandmark != nil && currLandmark.children != nil) {
     NSRange targetRange;
     switch (direction) {
       case JUMP_DIRECTION_DOWN:
@@ -71,6 +76,8 @@
 
 - (NSRange)_bj_findJumpRangeBelowLandmark:(DVTSourceLandmarkItem *)currLandmark currentLocation:(NSUInteger)currLoc
 {
+  NSLog(@"%s curr_landmark: [type=%d, range=%@, nameRange=%@]", __FUNCTION__,
+        currLandmark.type, NSStringFromRange(currLandmark.range), NSStringFromRange(currLandmark.nameRange));
   NSRange ret = currLandmark.range;
   BOOL done = NO;
 
@@ -87,7 +94,12 @@
     if (!done) {
       // Check if the current location is actually in current landmark's name range.
       // And if so, the target would be the first child item of this landmark.
-      if (NSLocationInRange(currLoc, currLandmark.nameRange)) {
+      // But be careful for the top-level landmark, its nameRange equals to its range,
+      // we should avoid that because even actually the caret is at the bottom of second last
+      // child landmark of the top-level landmark, this check would be true and caused the caret
+      // moving to the first landmark.
+      if (NSLocationInRange(currLoc, currLandmark.nameRange)
+          && currLandmark.type != 0) {
         ret = ((DVTSourceLandmarkItem *)currLandmark.children[0]).nameRange;
         done = YES;
       }
@@ -118,11 +130,11 @@
 
     if (!done) {
       NSUInteger loopCount = currLandmark.children.count;
-      for (int i = 0; i < loopCount; i++) {
+      for (NSUInteger i = 0; i < loopCount; i++) {
         DVTSourceLandmarkItem *item = currLandmark.children[i];
         DVTSourceLandmarkItem *nextItem = (i + 1 >= loopCount) ? nil : currLandmark.children[i + 1];
 
-        if (nextItem == nil) {
+        if (nil == nextItem) {
           // Something is wrong, this could not happen since we've checked above so carefully.
           // So for fail-safe, we just use the default value.
           done = YES;
