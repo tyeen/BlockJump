@@ -273,7 +273,8 @@
             break;
           }
 
-          if (NSLocationInRange(currLoc, nextItem.range)) {
+          if (NSLocationInRange(currLoc, nextItem.nameRange)
+              || NSLocationInRange(currLoc, item.range)) {
             ret = item.nameRange;
             done = YES;
             break;
