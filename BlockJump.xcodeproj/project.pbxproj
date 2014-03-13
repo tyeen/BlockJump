@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B17EA26918CEA6100058644A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B17EA26718CEA6100058644A /* InfoPlist.strings */; };
 		B17EA27218CEADCB0058644A /* DVTSourceTextView+BlockJump.m in Sources */ = {isa = PBXBuildFile; fileRef = B17EA27118CEADCB0058644A /* DVTSourceTextView+BlockJump.m */; };
+		B1D31E9518D20C78000B31DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1D31E9418D20C78000B31DB /* QuartzCore.framework */; };
 		B1E5D5B618CEB34300F9C606 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E5D5B518CEB34300F9C606 /* DVTFoundation.framework */; };
 		B1E5D5B818CEB34D00F9C606 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E5D5B718CEB34D00F9C606 /* DVTKit.framework */; };
 		B1E5D5BA18CEB35500F9C606 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E5D5B918CEB35500F9C606 /* IDEKit.framework */; };
@@ -24,16 +25,14 @@
 		B17EA26A18CEA6100058644A /* BlockJump-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlockJump-Prefix.pch"; sourceTree = "<group>"; };
 		B17EA27018CEADCB0058644A /* DVTSourceTextView+BlockJump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTSourceTextView+BlockJump.h"; sourceTree = "<group>"; };
 		B17EA27118CEADCB0058644A /* DVTSourceTextView+BlockJump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVTSourceTextView+BlockJump.m"; sourceTree = "<group>"; };
+		B1D31E9418D20C78000B31DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B1E5D5B518CEB34300F9C606 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = BlockJump/SupportFramworks/DVTFoundation.framework; sourceTree = "<group>"; };
 		B1E5D5B718CEB34D00F9C606 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = BlockJump/SupportFramworks/DVTKit.framework; sourceTree = "<group>"; };
 		B1E5D5B918CEB35500F9C606 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = BlockJump/SupportFramworks/IDEKit.framework; sourceTree = "<group>"; };
-		B1E5D5BC18CEB3F500F9C606 /* DVTFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTFoundation.h; sourceTree = "<group>"; };
-		B1E5D5BD18CEB3F500F9C606 /* DVTKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTKit.h; sourceTree = "<group>"; };
-		B1E5D5BE18CEB3F500F9C606 /* IDEFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEFoundation.h; sourceTree = "<group>"; };
-		B1E5D5BF18CEB3F500F9C606 /* IDEKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEKit.h; sourceTree = "<group>"; };
-		B1E5D5C018CEB3F500F9C606 /* IDESourceEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDESourceEditor.h; sourceTree = "<group>"; };
 		B1E5D5C118CEB42A00F9C606 /* NSObject+Swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Swizzle.h"; sourceTree = "<group>"; };
 		B1E5D5C218CEB42A00F9C606 /* NSObject+Swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Swizzle.m"; sourceTree = "<group>"; };
+		B1FCC37618D1D1160005ED46 /* DVTFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTFoundation.h; sourceTree = "<group>"; };
+		B1FCC37718D1D1160005ED46 /* DVTKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTKit.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1D31E9518D20C78000B31DB /* QuartzCore.framework in Frameworks */,
 				B1E5D5BA18CEB35500F9C606 /* IDEKit.framework in Frameworks */,
 				B1E5D5B818CEB34D00F9C606 /* DVTKit.framework in Frameworks */,
 				B1E5D5B618CEB34300F9C606 /* DVTFoundation.framework in Frameworks */,
@@ -70,6 +70,7 @@
 		B17EA25D18CEA6100058644A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B1D31E9418D20C78000B31DB /* QuartzCore.framework */,
 				B1E5D5B918CEB35500F9C606 /* IDEKit.framework */,
 				B1E5D5B718CEB34D00F9C606 /* DVTKit.framework */,
 				B1E5D5B518CEB34300F9C606 /* DVTFoundation.framework */,
@@ -113,11 +114,8 @@
 		B1E5D5BB18CEB38800F9C606 /* Xcode Headers */ = {
 			isa = PBXGroup;
 			children = (
-				B1E5D5BC18CEB3F500F9C606 /* DVTFoundation.h */,
-				B1E5D5BD18CEB3F500F9C606 /* DVTKit.h */,
-				B1E5D5BE18CEB3F500F9C606 /* IDEFoundation.h */,
-				B1E5D5BF18CEB3F500F9C606 /* IDEKit.h */,
-				B1E5D5C018CEB3F500F9C606 /* IDESourceEditor.h */,
+				B1FCC37618D1D1160005ED46 /* DVTFoundation.h */,
+				B1FCC37718D1D1160005ED46 /* DVTKit.h */,
 			);
 			name = "Xcode Headers";
 			sourceTree = "<group>";
