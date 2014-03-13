@@ -11,8 +11,8 @@
 #import "DVTFoundation.h"
 #import "DVTKit.h"
 
-#define KEY_CODE_UP_ARROW 0x7E
-#define KEY_CODE_DOWN_ARROW 0x7D
+#define KEY_CODE_LEFT_SQUARE_BRACKET 0x21
+#define KEY_CODE_RIGHT_SQUARE_BRACKET 0x1e
 
 #define JUMP_DIRECTION_NONE 0
 #define JUMP_DIRECTION_UP 1
@@ -49,10 +49,10 @@
 {
   NSInteger ret = JUMP_DIRECTION_NONE;
 
-  BOOL optKey = (theEvent.modifierFlags & NSAlternateKeyMask) != 0;
-  if (optKey && theEvent.keyCode == KEY_CODE_UP_ARROW) {
+  BOOL optKey = (theEvent.modifierFlags & NSControlKeyMask) != 0;
+  if (optKey && theEvent.keyCode == KEY_CODE_LEFT_SQUARE_BRACKET) {
     ret = JUMP_DIRECTION_UP;
-  } else if (optKey && theEvent.keyCode == KEY_CODE_DOWN_ARROW) {
+  } else if (optKey && theEvent.keyCode == KEY_CODE_RIGHT_SQUARE_BRACKET) {
     ret = JUMP_DIRECTION_DOWN;
   }
 
