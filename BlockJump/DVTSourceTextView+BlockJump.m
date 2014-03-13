@@ -1,5 +1,5 @@
 //
-//  Demo.m
+//  DVTSourceTextView+BlockJump.m
 //  BlockJump
 //
 //  Created by Yin Tan on 3/11/14.
@@ -9,7 +9,6 @@
 #import "DVTSourceTextView+BlockJump.h"
 #import "NSObject+Swizzle.h"
 #import "DVTFoundation.h"
-#import "DVTKit.h"
 
 #define KEY_CODE_LEFT_SQUARE_BRACKET 0x21
 #define KEY_CODE_RIGHT_SQUARE_BRACKET 0x1e
