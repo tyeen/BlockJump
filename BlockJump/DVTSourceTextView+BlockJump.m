@@ -14,6 +14,7 @@
 #define KEY_CODE_UP_ARROW 0x7E
 #define KEY_CODE_DOWN_ARROW 0x7D
 
+#define JUMP_DIRECTION_NONE 0
 #define JUMP_DIRECTION_UP 1
 #define JUMP_DIRECTION_DOWN 2
 
@@ -24,27 +25,52 @@
   [self _bj_swizzleInstanceMethod:@selector(keyDown:) withNewMethod:@selector(_bj_keyDown:)];
 }
 
+#pragma mark - swizzled methods
+
 - (void)_bj_keyDown:(NSEvent *)theEvent
 {
-  BOOL optKey = (theEvent.modifierFlags & NSAlternateKeyMask) != 0;
-  if (optKey && theEvent.keyCode == KEY_CODE_UP_ARROW) {
-    [self _bj_jumpBlockByDirection:JUMP_DIRECTION_UP];
-  } else if (optKey && theEvent.keyCode == KEY_CODE_DOWN_ARROW) {
-    [self _bj_jumpBlockByDirection:JUMP_DIRECTION_DOWN];
+  NSInteger jumpDirection = [self _bj_jumpDirectionByEvent:theEvent];
+  if (JUMP_DIRECTION_NONE != jumpDirection) {
+    [self _bj_jumpBlockByDirection:jumpDirection];
   } else {
     [self _bj_keyDown:theEvent];
   }
 }
 
+#pragma mark - private methods
+
+/**
+ * Check the key event and determine the jump direction.
+ *
+ * @param theEvent the key event to be checked.
+ * @return the jump direction(UP or DOWN), JUMP_DIRECTION_NONE for not jumping.
+ */
+- (NSInteger)_bj_jumpDirectionByEvent:(NSEvent *)theEvent
+{
+  NSInteger ret = JUMP_DIRECTION_NONE;
+
+  BOOL optKey = (theEvent.modifierFlags & NSAlternateKeyMask) != 0;
+  if (optKey && theEvent.keyCode == KEY_CODE_UP_ARROW) {
+    ret = JUMP_DIRECTION_UP;
+  } else if (optKey && theEvent.keyCode == KEY_CODE_DOWN_ARROW) {
+    ret = JUMP_DIRECTION_DOWN;
+  }
+
+  return ret;
+}
+
+/**
+ * Find the jump target range according to the direction and do the jump.
+ *
+ * @param direction jumping direction(UP or DOWN).
+ */
 - (void)_bj_jumpBlockByDirection:(NSInteger)direction
 {
   NSRange currentRange = self.selectedRange;
   DVTTextStorage *sourceStorage = self.textStorage;
   DVTSourceLandmarkItem *topLandmark = sourceStorage.topSourceLandmark;
   if (nil == topLandmark) {
-    NSLog(@"%s ignore because top_landmark is null.", __FUNCTION__);
     return;
-
   }
 
   DVTSourceLandmarkItem *currLandmark = [sourceStorage sourceLandmarkAtCharacterIndex:currentRange.location];
@@ -71,6 +97,14 @@
   }
 }
 
+/**
+ * Find the jump target range below the current landmark where the current caret location is.
+ *
+ * @param currLandmark the landmark where the current caret location is.
+ * @param currLoc the location of the caret.
+ * @return the jump target range, below the current landmark.
+ *         When reached bottom, just the same value will be returned.
+ */
 - (NSRange)_bj_findJumpRangeBelowLandmark:(DVTSourceLandmarkItem *)currLandmark currentLocation:(NSUInteger)currLoc
 {
   NSRange ret = currLandmark.nameRange;
@@ -172,6 +206,14 @@
   return ret;
 }
 
+/**
+ * Find the jump target range above the current landmark where the current caret location is.
+ *
+ * @param currLandmark the landmark where the current caret location is.
+ * @param currLoc the location of the caret.
+ * @return the jump target range, above the current landmark.
+ *         When reached bottom, just the same value will be returned.
+ */
 - (NSRange)_bj_findJumpRangeAboveLandmark:(DVTSourceLandmarkItem *)currLandmark currentLocation:(NSUInteger)currLoc
 {
   NSRange ret = currLandmark.nameRange;
