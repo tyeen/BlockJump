@@ -216,7 +216,7 @@
  */
 - (NSRange)_bj_findJumpDownRangeFromLandmark:(DVTSourceLandmarkItem *)currLandmark currentLocation:(NSUInteger)currLoc
 {
-  NSRange ret = currLandmark.nameRange;
+  NSRange ret = NSMakeRange(currLoc, 0);
   BOOL done = NO;
 
   // So this landmark is not a container. We'll gothrough its parent landmark to find out where we are.
