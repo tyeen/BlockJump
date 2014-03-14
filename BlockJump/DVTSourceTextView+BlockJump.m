@@ -348,7 +348,7 @@
  */
 - (NSRange)_bj_findJumpUpRangeFromLandmark:(DVTSourceLandmarkItem *)currLandmark currentLocation:(NSUInteger)currLoc
 {
-  NSRange ret = currLandmark.nameRange;
+  NSRange ret = NSMakeRange(currLoc, 0);
   BOOL done = NO;
 
   DVTSourceLandmarkItem *parentLandmark = currLandmark.type == 0 ? currLandmark : currLandmark.parent;
@@ -356,10 +356,10 @@
   if (nil == parentLandmark || parentLandmark.children == nil || parentLandmark.children.count <= 0) {
     done = YES;
   } else {
-    // Check if the caret has been at the top most child landmark's name range.
+    // Check if the caret has been at the top most child landmark's name range or beyond the first child landmark.
     // If so, we need to move to the parent landmark's name range.
     DVTSourceLandmarkItem *firstItem = parentLandmark.children[0];
-    if (NSLocationInRange(currLoc, firstItem.nameRange)) {
+    if (NSLocationInRange(currLoc, firstItem.nameRange) || currLoc < firstItem.nameRange.location) {
       if (parentLandmark.type > 0) {
         // Should not move to anywhere when parent is top-level landmark,
         // because top-level landmark's nameRange == its range.
