@@ -376,23 +376,8 @@
         DVTSourceLandmarkItem *item = parentLandmark.children[i];
         DVTSourceLandmarkItem *nextItem = (i + 1 >= siblingCount) ? nil : parentLandmark.children[i + 1];
 
-        if (nil == nextItem) {
-          // Reached bottom.
-          if (item.type <= 3) {
-            if (item.children != nil && item.children.count > 0) {
-              ret = ((DVTSourceLandmarkItem *)item.children[item.children.count - 1]).nameRange;
-            } else {
-              ret = item.nameRange;
-            }
-          } else {
-            ret = item.nameRange;
-          }
-          done = YES;
-          break;
-        }
-
-        if (currLoc >= item.range.location
-            && currLoc <= nextItem.nameRange.location + nextItem.nameRange.length) {
+        if (nil == nextItem || // reached bottom
+            (currLoc >= item.range.location && currLoc <= nextItem.nameRange.location + nextItem.nameRange.length)) {
           // If the target is a container, we need to check inside instead of just jumping to its name range.
           if (item.type <= 3) {
             if (item.children != nil && item.children.count > 0) {
