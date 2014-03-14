@@ -1,5 +1,5 @@
 ### What is this
-I'm a begginner of Cocoa developing, and started using Xcode just recently.
+I'm a beginner of Cocoa developing, and started using Xcode just recently.
 In my immature opinion, Xcode is lack of navigatiing skills.
 This plugin let you jump between methods or other items in the source editor.
 A little illumination shows how it looks like:
