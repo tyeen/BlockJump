@@ -7,15 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B112EB8218F11B3700567F94 /* MASShortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = B112EB7918F11B3700567F94 /* MASShortcut.m */; };
+		B112EB8318F11B3700567F94 /* MASShortcut+Monitoring.m in Sources */ = {isa = PBXBuildFile; fileRef = B112EB7B18F11B3700567F94 /* MASShortcut+Monitoring.m */; };
+		B112EB8418F11B3700567F94 /* MASShortcut+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = B112EB7D18F11B3700567F94 /* MASShortcut+UserDefaults.m */; };
+		B112EB8518F11B3700567F94 /* MASShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = B112EB7F18F11B3700567F94 /* MASShortcutView.m */; };
+		B112EB8618F11B3700567F94 /* MASShortcutView+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = B112EB8118F11B3700567F94 /* MASShortcutView+UserDefaults.m */; };
+		B112EB9A18F158C900567F94 /* BJSettingsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B112EB9818F158C900567F94 /* BJSettingsWindowController.m */; };
+		B112EB9B18F158C900567F94 /* BJSettingsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B112EB9918F158C900567F94 /* BJSettingsWindowController.xib */; };
+		B112EB9E18F15B5800567F94 /* BlockJump.m in Sources */ = {isa = PBXBuildFile; fileRef = B112EB9D18F15B5800567F94 /* BlockJump.m */; };
 		B14D89C418D332EA001531B0 /* DVTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B14D89C218D332EA001531B0 /* DVTFoundation.framework */; };
 		B14D89C518D332EA001531B0 /* DVTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B14D89C318D332EA001531B0 /* DVTKit.framework */; };
 		B17EA26918CEA6100058644A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B17EA26718CEA6100058644A /* InfoPlist.strings */; };
 		B17EA27218CEADCB0058644A /* DVTSourceTextView+BlockJump.m in Sources */ = {isa = PBXBuildFile; fileRef = B17EA27118CEADCB0058644A /* DVTSourceTextView+BlockJump.m */; };
 		B1D31E9518D20C78000B31DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1D31E9418D20C78000B31DB /* QuartzCore.framework */; };
+		B1D5526318F18320007AF5AC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1D5526218F18320007AF5AC /* Cocoa.framework */; };
 		B1E5D5C318CEB42A00F9C606 /* NSObject+Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E5D5C218CEB42A00F9C606 /* NSObject+Swizzle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B112EB7818F11B3700567F94 /* MASShortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcut.h; sourceTree = "<group>"; };
+		B112EB7918F11B3700567F94 /* MASShortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcut.m; sourceTree = "<group>"; };
+		B112EB7A18F11B3700567F94 /* MASShortcut+Monitoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+Monitoring.h"; sourceTree = "<group>"; };
+		B112EB7B18F11B3700567F94 /* MASShortcut+Monitoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+Monitoring.m"; sourceTree = "<group>"; };
+		B112EB7C18F11B3700567F94 /* MASShortcut+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+UserDefaults.h"; sourceTree = "<group>"; };
+		B112EB7D18F11B3700567F94 /* MASShortcut+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+UserDefaults.m"; sourceTree = "<group>"; };
+		B112EB7E18F11B3700567F94 /* MASShortcutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcutView.h; sourceTree = "<group>"; };
+		B112EB7F18F11B3700567F94 /* MASShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutView.m; sourceTree = "<group>"; };
+		B112EB8018F11B3700567F94 /* MASShortcutView+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcutView+UserDefaults.h"; sourceTree = "<group>"; };
+		B112EB8118F11B3700567F94 /* MASShortcutView+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcutView+UserDefaults.m"; sourceTree = "<group>"; };
+		B112EB9718F158C900567F94 /* BJSettingsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJSettingsWindowController.h; sourceTree = "<group>"; };
+		B112EB9818F158C900567F94 /* BJSettingsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJSettingsWindowController.m; sourceTree = "<group>"; };
+		B112EB9918F158C900567F94 /* BJSettingsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BJSettingsWindowController.xib; sourceTree = "<group>"; };
+		B112EB9C18F15B5800567F94 /* BlockJump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockJump.h; sourceTree = "<group>"; };
+		B112EB9D18F15B5800567F94 /* BlockJump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockJump.m; sourceTree = "<group>"; };
 		B14D89C218D332EA001531B0 /* DVTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTFoundation.framework; path = ../../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework; sourceTree = "<group>"; };
 		B14D89C318D332EA001531B0 /* DVTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVTKit.framework; path = ../../../../../../Applications/Xcode.app/Contents/SharedFrameworks/DVTKit.framework; sourceTree = "<group>"; };
 		B17EA25B18CEA6100058644A /* BlockJump.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlockJump.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -27,6 +51,7 @@
 		B17EA27018CEADCB0058644A /* DVTSourceTextView+BlockJump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTSourceTextView+BlockJump.h"; sourceTree = "<group>"; };
 		B17EA27118CEADCB0058644A /* DVTSourceTextView+BlockJump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVTSourceTextView+BlockJump.m"; sourceTree = "<group>"; };
 		B1D31E9418D20C78000B31DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B1D5526218F18320007AF5AC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B1E5D5C118CEB42A00F9C606 /* NSObject+Swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Swizzle.h"; sourceTree = "<group>"; };
 		B1E5D5C218CEB42A00F9C606 /* NSObject+Swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Swizzle.m"; sourceTree = "<group>"; };
 		B1FCC37618D1D1160005ED46 /* DVTFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTFoundation.h; sourceTree = "<group>"; };
@@ -38,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1D5526318F18320007AF5AC /* Cocoa.framework in Frameworks */,
 				B14D89C418D332EA001531B0 /* DVTFoundation.framework in Frameworks */,
 				B1D31E9518D20C78000B31DB /* QuartzCore.framework in Frameworks */,
 				B14D89C518D332EA001531B0 /* DVTKit.framework in Frameworks */,
@@ -47,6 +73,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B112EB7718F11B2400567F94 /* MASShortcut */ = {
+			isa = PBXGroup;
+			children = (
+				B112EB7818F11B3700567F94 /* MASShortcut.h */,
+				B112EB7918F11B3700567F94 /* MASShortcut.m */,
+				B112EB7A18F11B3700567F94 /* MASShortcut+Monitoring.h */,
+				B112EB7B18F11B3700567F94 /* MASShortcut+Monitoring.m */,
+				B112EB7C18F11B3700567F94 /* MASShortcut+UserDefaults.h */,
+				B112EB7D18F11B3700567F94 /* MASShortcut+UserDefaults.m */,
+				B112EB7E18F11B3700567F94 /* MASShortcutView.h */,
+				B112EB7F18F11B3700567F94 /* MASShortcutView.m */,
+				B112EB8018F11B3700567F94 /* MASShortcutView+UserDefaults.h */,
+				B112EB8118F11B3700567F94 /* MASShortcutView+UserDefaults.m */,
+			);
+			name = MASShortcut;
+			sourceTree = "<group>";
+		};
 		B17EA25218CEA6100058644A = {
 			isa = PBXGroup;
 			children = (
@@ -67,6 +110,7 @@
 		B17EA25D18CEA6100058644A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B1D5526218F18320007AF5AC /* Cocoa.framework */,
 				B14D89C218D332EA001531B0 /* DVTFoundation.framework */,
 				B14D89C318D332EA001531B0 /* DVTKit.framework */,
 				B1D31E9418D20C78000B31DB /* QuartzCore.framework */,
@@ -87,12 +131,18 @@
 		B17EA26418CEA6100058644A /* BlockJump */ = {
 			isa = PBXGroup;
 			children = (
+				B112EB7718F11B2400567F94 /* MASShortcut */,
 				B1E5D5C118CEB42A00F9C606 /* NSObject+Swizzle.h */,
 				B1E5D5C218CEB42A00F9C606 /* NSObject+Swizzle.m */,
 				B1E5D5BB18CEB38800F9C606 /* Xcode Headers */,
 				B17EA26518CEA6100058644A /* Supporting Files */,
 				B17EA27018CEADCB0058644A /* DVTSourceTextView+BlockJump.h */,
 				B17EA27118CEADCB0058644A /* DVTSourceTextView+BlockJump.m */,
+				B112EB9718F158C900567F94 /* BJSettingsWindowController.h */,
+				B112EB9818F158C900567F94 /* BJSettingsWindowController.m */,
+				B112EB9918F158C900567F94 /* BJSettingsWindowController.xib */,
+				B112EB9C18F15B5800567F94 /* BlockJump.h */,
+				B112EB9D18F15B5800567F94 /* BlockJump.m */,
 			);
 			path = BlockJump;
 			sourceTree = "<group>";
@@ -167,6 +217,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B112EB9B18F158C900567F94 /* BJSettingsWindowController.xib in Resources */,
 				B17EA26918CEA6100058644A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -178,8 +229,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B112EB9E18F15B5800567F94 /* BlockJump.m in Sources */,
 				B17EA27218CEADCB0058644A /* DVTSourceTextView+BlockJump.m in Sources */,
+				B112EB9A18F158C900567F94 /* BJSettingsWindowController.m in Sources */,
+				B112EB8318F11B3700567F94 /* MASShortcut+Monitoring.m in Sources */,
+				B112EB8518F11B3700567F94 /* MASShortcutView.m in Sources */,
 				B1E5D5C318CEB42A00F9C606 /* NSObject+Swizzle.m in Sources */,
+				B112EB8618F11B3700567F94 /* MASShortcutView+UserDefaults.m in Sources */,
+				B112EB8418F11B3700567F94 /* MASShortcut+UserDefaults.m in Sources */,
+				B112EB8218F11B3700567F94 /* MASShortcut.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
