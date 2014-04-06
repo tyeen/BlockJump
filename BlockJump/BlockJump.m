@@ -48,7 +48,7 @@
   if (naviItem) {
     [[naviItem submenu] addItem:[NSMenuItem separatorItem]];
 
-    NSString *title = @"BlockJump shortcut setting";
+    NSString *title = @"Change BlockJump Shortcut";
     NSMenuItem *blockJumpSettingMenu = [[NSMenuItem alloc] initWithTitle:title
                                                                   action:@selector(showSettingPanel)
                                                            keyEquivalent:@""];
