@@ -12,20 +12,24 @@ I did some research about DVTKit and related sources, and found some ways to get
 range of the methods and other items in the current source file.
 Then I just wrote some code that check the current location and find where to go next.
 
-When you press the key combination that I defined in this plug-in, you can move around
+When you press the key combination specified by yourself, you can move around
 the source code more easier.
 
-Key combination:
+Default Key Combination:
 
 * `CTRL` + `[` :  jump up
 * `CTRL` + `]` :  jump down
 
-### Limitation
-For now, I just fixed the key combination to `CTRL`+`[` and `CTRL`+`]`.
-Maybe I'll consider adding a menu to customize the key combination later. But since it works great
-for me, I don't know when that could happen:) So if you're not satisfied with these combinations,
-you have to change it in the source code by yourself. I'm sorry for the inconvenience.
+You can change the key combination by selecting:
 
+    View -> Change BlockJump Shortcut
+
+> I've tried to add the setting menu to Navigation and other more appropriate items,
+  but failed. Maybe the timing of the plug-ins initiating is earlier than the
+  timing of other menu items.
+  So I decide to pollute the View menu. Forgive me:(
+
+### Limitation
 The targets where the caret could jump to are the same as items displayed in
 
     Menu -> View -> Standard Editor -> Show Document Items
@@ -42,3 +46,12 @@ Now restart Xcode and it should work.
 Just delete the bundle with the name of `BlockJump.xcplugin` in
 
     ~/Library/Application Support/Developer/Shared/Xcode/Plug-ins
+
+You may also want to remove two keys called: (Remaining is OK, they won't harm anything.)
+
+* com.tyeen.xcplugin.blockjump.jumppreviousblockkey
+* com.tyeen.xcplugin.blockjump.jumpnextblockkey
+
+in the file:
+
+    ~/Library/Preferences/com.apple.dt.Xcode.plist
