@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DVTKit.h"
+#import "MASShortcut.h"
 
 @interface DVTSourceTextView (BlockJump)
 

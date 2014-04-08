@@ -8,7 +8,8 @@
 
 #import "BJSettingsWindowController.h"
 #import "MASShortcutView.h"
-#import "MASShortcut+UserDefaults.h"
+#import "MASShortcutView+UserDefaults.h"
+#import "Constants.h"
 
 @interface BJSettingsWindowController ()
 
@@ -32,9 +33,18 @@
 {
   [super windowDidLoad];
 
-  // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+  self.previousShortcutView.associatedUserDefaultsKey = kBlockJumpPreviousShortcutKey;
+  self.nextShortcutView.associatedUserDefaultsKey = kBlockJumpNextShortcutKey;
+
   self.previousShortcutView.appearance = MASShortcutViewAppearanceTexturedRect;
   self.nextShortcutView.appearance = MASShortcutViewAppearanceTexturedRect;
+}
+
+- (void)windowWillClose:(NSNotification *)notification
+{
+  // Empty the UserDefaults key to stop observing.
+  self.previousShortcutView.associatedUserDefaultsKey = nil;
+  self.nextShortcutView.associatedUserDefaultsKey = nil;
 }
 
 @end

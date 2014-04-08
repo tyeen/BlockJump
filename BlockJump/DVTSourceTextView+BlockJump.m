@@ -9,6 +9,8 @@
 #import "DVTSourceTextView+BlockJump.h"
 #import "NSObject+Swizzle.h"
 #import "DVTFoundation.h"
+#import "Constants.h"
+#import <objc/runtime.h>
 
 #define KEY_CODE_LEFT_SQUARE_BRACKET 0x21
 #define KEY_CODE_RIGHT_SQUARE_BRACKET 0x1e
@@ -22,9 +24,35 @@
 + (void)load
 {
   [self _bj_swizzleInstanceMethod:@selector(keyDown:) withNewMethod:@selector(_bj_keyDown:)];
+  [self _bj_swizzleInstanceMethod:@selector(initWithFrame:textContainer:)
+                    withNewMethod:@selector(_bj_initWithFrame:textContainer:)];
+  // Since ARC does not allow us to use @selector(dealloc).
+  SEL selDealloc = NSSelectorFromString(@"dealloc");
+  [self _bj_swizzleInstanceMethod:selDealloc withNewMethod:@selector(_bj_dealloc)];
 }
 
 #pragma mark - swizzled methods
+
+- (id)_bj_initWithFrame:(NSRect)frame textContainer:(NSTextContainer *)textContainer
+{
+  id obj = [self _bj_initWithFrame:frame textContainer:textContainer];
+
+  // Initiate shortcut setting observer.
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(_bj_shortcutSettingsChanged:)
+                                               name:NSUserDefaultsDidChangeNotification
+                                             object:[NSUserDefaults standardUserDefaults]];
+  return obj;
+}
+
+- (void)_bj_dealloc
+{
+  // Remove observer.
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:NSUserDefaultsDidChangeNotification
+                                                object:[NSUserDefaults standardUserDefaults]];
+  [self _bj_dealloc];
+}
 
 - (void)_bj_keyDown:(NSEvent *)theEvent
 {
@@ -36,7 +64,54 @@
   }
 }
 
+#pragma mark - observer
+
+- (void)_bj_shortcutSettingsChanged:(NSNotification *)noti
+{
+  NSData *jumpPreviousShortcutData = [noti.object dataForKey:kBlockJumpPreviousShortcutKey];
+  NSData *jumpNextShortcutData = [noti.object dataForKey:kBlockJumpNextShortcutKey];
+  MASShortcut *jumpPreviousShortcut = [MASShortcut shortcutWithData:jumpPreviousShortcutData];
+  MASShortcut *jumpNextShortcut = [MASShortcut shortcutWithData:jumpNextShortcutData];
+  NSLog(@"noti.name: %@, previous_shortcut:[%lu, %lu], next_shortcut:[%lu, %lu]",
+        noti.name, jumpPreviousShortcut.keyCode, jumpPreviousShortcut.modifierFlags,
+        jumpNextShortcut.keyCode, jumpNextShortcut.modifierFlags);
+
+  [self setJumpPreviousShortcut:jumpPreviousShortcut];
+  [self setJumpNextShortcut:jumpNextShortcut];
+}
+
 #pragma mark - private methods
+
+// For unique id.
+void *kJumpPreviousShortcut = &kJumpPreviousShortcut;
+void *kJumpNextShortcut = &kJumpNextShortcut;
+
+- (MASShortcut *)jumpPreviousShortcut
+{
+  return objc_getAssociatedObject(self, kJumpPreviousShortcut);
+}
+
+- (void)setJumpPreviousShortcut:(MASShortcut *)shortcut
+{
+  objc_setAssociatedObject(self, kJumpPreviousShortcut, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+  objc_setAssociatedObject(self, kJumpPreviousShortcut, shortcut, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (MASShortcut *)jumpNextShortcut
+{
+  return objc_getAssociatedObject(self, kJumpNextShortcut);
+}
+
+- (void)setJumpNextShortcut:(MASShortcut *)shortcut
+{
+  objc_setAssociatedObject(self, kJumpNextShortcut, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+  objc_setAssociatedObject(self, kJumpNextShortcut, shortcut, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)validShortcut:(MASShortcut *)shortcut
+{
+  return (shortcut != nil && shortcut.keyCode != 0 && shortcut.modifierFlags != 0);
+}
 
 /**
  * Check the key event and determine the jump direction.
@@ -47,6 +122,11 @@
 - (NSInteger)_bj_jumpDirectionByEvent:(NSEvent *)theEvent
 {
   NSInteger ret = JUMP_DIRECTION_NONE;
+
+  MASShortcut *jumpPrevShortcut = [self jumpPreviousShortcut];
+  MASShortcut *jumpNextShortcut = [self jumpNextShortcut];
+  NSLog(@"previous_shortcut=[%lu, %lu]", jumpPrevShortcut.keyCode, jumpPrevShortcut.modifierFlags);
+  NSLog(@"previous_shortcut=[%lu, %lu]", jumpNextShortcut.keyCode, jumpNextShortcut.modifierFlags);
 
   BOOL optKey = (theEvent.modifierFlags & NSControlKeyMask) != 0;
   if (optKey && theEvent.keyCode == KEY_CODE_LEFT_SQUARE_BRACKET) {

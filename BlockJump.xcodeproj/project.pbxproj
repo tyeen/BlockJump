@@ -50,6 +50,7 @@
 		B17EA26A18CEA6100058644A /* BlockJump-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlockJump-Prefix.pch"; sourceTree = "<group>"; };
 		B17EA27018CEADCB0058644A /* DVTSourceTextView+BlockJump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVTSourceTextView+BlockJump.h"; sourceTree = "<group>"; };
 		B17EA27118CEADCB0058644A /* DVTSourceTextView+BlockJump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVTSourceTextView+BlockJump.m"; sourceTree = "<group>"; };
+		B1B9B80418F1A70200AE700B /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		B1D31E9418D20C78000B31DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B1D5526218F18320007AF5AC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B1E5D5C118CEB42A00F9C606 /* NSObject+Swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Swizzle.h"; sourceTree = "<group>"; };
@@ -143,6 +144,7 @@
 				B112EB9918F158C900567F94 /* BJSettingsWindowController.xib */,
 				B112EB9C18F15B5800567F94 /* BlockJump.h */,
 				B112EB9D18F15B5800567F94 /* BlockJump.m */,
+				B1B9B80418F1A70200AE700B /* Constants.h */,
 			);
 			path = BlockJump;
 			sourceTree = "<group>";
