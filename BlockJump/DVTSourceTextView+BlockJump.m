@@ -125,15 +125,31 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
 
   MASShortcut *jumpPrevShortcut = [self jumpPreviousShortcut];
   MASShortcut *jumpNextShortcut = [self jumpNextShortcut];
-  NSLog(@"previous_shortcut=[%lu, %lu]", jumpPrevShortcut.keyCode, jumpPrevShortcut.modifierFlags);
-  NSLog(@"previous_shortcut=[%lu, %lu]", jumpNextShortcut.keyCode, jumpNextShortcut.modifierFlags);
+  NSLog(@"previous_shortcut=[%lu, flags=%lu, ctrl:%lu, shift:%lu, opt:%lu, cmd:%lu]",
+        jumpPrevShortcut.keyCode, jumpPrevShortcut.modifierFlags,
+        jumpPrevShortcut.modifierFlags & NSControlKeyMask,
+        jumpPrevShortcut.modifierFlags & NSShiftKeyMask,
+        jumpPrevShortcut.modifierFlags & NSAlternateKeyMask,
+        jumpPrevShortcut.modifierFlags & NSCommandKeyMask);
+  NSLog(@"next_shortcut=[%lu, %lu]", jumpNextShortcut.keyCode, jumpNextShortcut.modifierFlags);
+  NSLog(@"event: [%hu, flag=%lu ctrl:%lu, shift:%lu, opt:%lu, cmd:%lu]",
+        theEvent.keyCode, theEvent.modifierFlags,
+        theEvent.modifierFlags & NSControlKeyMask,
+        theEvent.modifierFlags & NSShiftKeyMask,
+        theEvent.modifierFlags & NSAlternateKeyMask,
+        theEvent.modifierFlags & NSCommandKeyMask);
 
-  BOOL optKey = (theEvent.modifierFlags & NSControlKeyMask) != 0;
-  if (optKey && theEvent.keyCode == KEY_CODE_LEFT_SQUARE_BRACKET) {
+  if ([self validShortcut:jumpPrevShortcut]
+      && theEvent.keyCode == jumpPrevShortcut.keyCode
+      && MASShortcutClear(theEvent.modifierFlags) == jumpPrevShortcut.modifierFlags) {
     ret = JUMP_DIRECTION_UP;
-  } else if (optKey && theEvent.keyCode == KEY_CODE_RIGHT_SQUARE_BRACKET) {
+  } else if ([self validShortcut:jumpNextShortcut]
+             && theEvent.keyCode == jumpNextShortcut.keyCode
+             && MASShortcutClear(theEvent.modifierFlags) == jumpNextShortcut.modifierFlags) {
     ret = JUMP_DIRECTION_DOWN;
   }
+
+  NSLog(@"%s valid_previous:%d, valid_next:%d ret=%ld", __FUNCTION__, [self validShortcut:jumpPrevShortcut], [self validShortcut:jumpNextShortcut], ret);
 
   return ret;
 }
