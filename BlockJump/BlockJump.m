@@ -6,8 +6,13 @@
 //  Copyright (c) 2014 Yin Tan. All rights reserved.
 //
 
+#import "Constants.h"
 #import "BlockJump.h"
 #import "BJSettingsWindowController.h"
+#import "MASShortcut+UserDefaults.h"
+
+#define KEY_CODE_LEFT_SQUARE_BRACKET 0x21
+#define KEY_CODE_RIGHT_SQUARE_BRACKET 0x1e
 
 @interface BlockJump ()
 
@@ -37,8 +42,22 @@
   return self;
 }
 
+- (void)registerDefaultShortcut
+{
+  MASShortcut *defaultJumpPrevShortcut = [[MASShortcut alloc] initWithKeyCode:KEY_CODE_LEFT_SQUARE_BRACKET
+                                                                modifierFlags:NSControlKeyMask];
+  MASShortcut *defaultJumpNextShortcut = [[MASShortcut alloc] initWithKeyCode:KEY_CODE_RIGHT_SQUARE_BRACKET
+                                                                modifierFlags:NSControlKeyMask];
+  NSDictionary *defaultJumpPrevValues = @{kBlockJumpPreviousShortcutKey: defaultJumpPrevShortcut.data};
+  NSDictionary *defaultJumpNextValues = @{kBlockJumpNextShortcutKey: defaultJumpNextShortcut.data};
+  NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+  [userDefaults registerDefaults:defaultJumpPrevValues];
+  [userDefaults registerDefaults:defaultJumpNextValues];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
+  [self registerDefaultShortcut];
   [self addMenu];
 }
 

@@ -12,9 +12,6 @@
 #import "Constants.h"
 #import <objc/runtime.h>
 
-#define KEY_CODE_LEFT_SQUARE_BRACKET 0x21
-#define KEY_CODE_RIGHT_SQUARE_BRACKET 0x1e
-
 #define JUMP_DIRECTION_NONE 0
 #define JUMP_DIRECTION_UP 1
 #define JUMP_DIRECTION_DOWN 2

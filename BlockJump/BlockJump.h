@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define kBlockJumpShortcutKey @"com.tyeen.xcplugin.blockjump.shortcutkey"
-
 @interface BlockJump : NSObject
 
 @end
