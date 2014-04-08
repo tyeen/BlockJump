@@ -39,8 +39,12 @@ For now, I couldn't do more beyond that.
 This plug-in is built under OS X 10.9.2 & Xcode 5.1. I haven't tested it on other versions.
 
 ### Installation
-Download the source and open it in Xcode. Build it(`cmd` + `B`) and that's all.
-Now restart Xcode and it should work.
+You can either
+
+* Use [Alcatraz](http://alcatraz.io/)
+* Download(Clone) the source and build it(`cmd` + `B`) in Xcode.
+
+Then restart Xcode and it should work.
 
 ### Uninstallation
 Just delete the bundle with the name of `BlockJump.xcplugin` in
