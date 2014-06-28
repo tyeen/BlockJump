@@ -141,7 +141,7 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
 - (void)_bj_jumpBlockByDirection:(NSInteger)direction
 {
   NSRange currentRange = self.selectedRange;
-  DVTTextStorage *sourceStorage = self.textStorage;
+  DVTTextStorage *sourceStorage = (DVTTextStorage *)self.textStorage;
   DVTSourceLandmarkItem *topLandmark = sourceStorage.topSourceLandmark;
   if (nil == topLandmark) {
     return;
