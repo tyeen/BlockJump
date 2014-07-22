@@ -22,12 +22,7 @@ Default Key Combination:
 
 You can change the key combination by selecting:
 
-    View -> Change BlockJump Shortcut
-
-> I've tried to add the setting menu to Navigation and other more appropriate items,
-  but failed. Maybe the timing of the plug-ins initiating is earlier than the
-  timing of other menu items.
-  So I decide to pollute the View menu. Forgive me:(
+    Editor -> Change BlockJump Shortcut
 
 ### Limitation
 The targets where the caret could jump to are the same as items displayed in
