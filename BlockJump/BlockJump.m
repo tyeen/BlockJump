@@ -22,6 +22,8 @@
 
 @implementation BlockJump
 
+static NSString * const kMenuItemTitle = @"Change BlockJump Shortcut";
+
 + (void)pluginDidLoad:(NSBundle *)plugin
 {
   static dispatch_once_t once;
@@ -37,6 +39,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationDidFinishLaunching:)
                                                  name:NSApplicationDidFinishLaunchingNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(menuDidChange:)
+                                                 name:NSMenuDidChangeItemNotification
                                                object:nil];
   }
   return self;
@@ -55,24 +61,16 @@
   [userDefaults registerDefaults:defaultJumpNextValues];
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)notification
+- (void)addMenuToHostMenu:(NSMenu *)hostMenu
 {
-  [self registerDefaultShortcut];
-  [self addMenu];
-}
+  if (hostMenu) {
+    [hostMenu addItem:[NSMenuItem separatorItem]];
 
-- (void)addMenu
-{
-  NSMenuItem *naviItem = [[NSApp mainMenu] itemWithTitle:@"View"];
-  if (naviItem) {
-    [[naviItem submenu] addItem:[NSMenuItem separatorItem]];
-
-    NSString *title = @"Change BlockJump Shortcut";
-    NSMenuItem *blockJumpSettingMenu = [[NSMenuItem alloc] initWithTitle:title
+    NSMenuItem *blockJumpSettingMenu = [[NSMenuItem alloc] initWithTitle:kMenuItemTitle
                                                                   action:@selector(showSettingPanel)
                                                            keyEquivalent:@""];
     [blockJumpSettingMenu setTarget:self];
-    [[naviItem submenu] addItem:blockJumpSettingMenu];
+    [hostMenu addItem:blockJumpSettingMenu];
   }
 }
 
@@ -80,6 +78,22 @@
 {
   self.settingPanel = [[BJSettingsWindowController alloc] initWithWindowNibName:@"BJSettingsWindowController"];
   [self.settingPanel showWindow:self];
+}
+
+
+#pragma mark - Notification Observers
+
+- (void)applicationDidFinishLaunching:(NSNotification *)notification
+{
+  [self registerDefaultShortcut];
+}
+
+- (void)menuDidChange:(NSNotification *)nofication
+{
+  NSMenuItem *editorMenuItem = [[NSApp mainMenu] itemWithTitle:@"Editor"];
+  if (editorMenuItem && ![editorMenuItem.submenu itemWithTitle:kMenuItemTitle]) {
+    [self addMenuToHostMenu:editorMenuItem.submenu];
+  }
 }
 
 @end
