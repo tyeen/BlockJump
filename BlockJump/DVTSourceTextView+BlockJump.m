@@ -39,6 +39,17 @@
                                            selector:@selector(_bj_shortcutSettingsChanged:)
                                                name:NSUserDefaultsDidChangeNotification
                                              object:[NSUserDefaults standardUserDefaults]];
+
+  // Read settings.
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  NSData *prevShortcutSetting = [defaults objectForKey:kBlockJumpPreviousShortcutKey];
+  NSData *nextShortcutSetting = [defaults objectForKey:kBlockJumpNextShortcutKey];
+  MASShortcut *jumpPreviousShortcut = [MASShortcut shortcutWithData:prevShortcutSetting];
+  MASShortcut *jumpNextShortcut = [MASShortcut shortcutWithData:nextShortcutSetting];
+
+  [self setJumpPreviousShortcut:jumpPreviousShortcut];
+  [self setJumpNextShortcut:jumpNextShortcut];
+
   return obj;
 }
 
