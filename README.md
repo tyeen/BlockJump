@@ -1,7 +1,7 @@
 ### What is this
 I'm a beginner of Cocoa developing, and just started using Xcode recently.
-In my immature opinion, Xcode is lack of navigatiing skills.
-This plug-in let you jump between methods, or other items in the source editor.
+In my immature opinion, Xcode is lack of navigating skills.
+This plug-in lets you jump between methods, or other items in the source editor.
 
 ### How does it work
 A simple illumination:
@@ -13,7 +13,7 @@ range of the methods and other items in the current source file.
 Then I just wrote some code that check the current location and find where to go next.
 
 When you press the key combination specified by yourself, you can move around
-the source code more easier.
+the source code more easier and faster.
 
 Default Key Combination:
 
@@ -31,7 +31,7 @@ The targets where the caret could jump to are the same as items displayed in
 
 For now, I couldn't do more beyond that.
 
-This plug-in is built under OS X 10.9.2 & Xcode 5.1. I haven't tested it on other versions.
+This plug-in is built under OS X 10.9.2 & Xcode 5.1.
 
 ### Installation
 You can either
