@@ -1,0 +1,8 @@
+.DS_Store
+.swp
+build
+.idea/
+xcuserdata/
+*.xccheckout
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcshareddata/
