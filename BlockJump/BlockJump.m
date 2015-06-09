@@ -102,9 +102,6 @@ static NSString * const kMenuItemTitle = @"Change BlockJump Shortcut";
                                                 object:nil];
 
   if (editorMenuItem && ![editorMenuItem.submenu itemWithTitle:kMenuItemTitle]) {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:NSMenuDidChangeItemNotification
-                                                  object:nil];
     [self addMenuToHostMenu:editorMenuItem.submenu];
   }
 
