@@ -90,10 +90,28 @@ static NSString * const kMenuItemTitle = @"Change BlockJump Shortcut";
 
 - (void)menuDidChange:(NSNotification *)nofication
 {
+  // Workaround: 10.11 introduced a bug that NSMenuDidChangeItemNotification fired recursively
+  // if we add new item in the notification handler. I see it as a bug because "DidChange" should
+  // be notified only when the item is actually added to the menu.
+  // So here we remove our registration and re-register ourselves AFTER our menu is added.
+
   NSMenuItem *editorMenuItem = [[NSApp mainMenu] itemWithTitle:@"Editor"];
+
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:NSMenuDidChangeItemNotification
+                                                object:nil];
+
   if (editorMenuItem && ![editorMenuItem.submenu itemWithTitle:kMenuItemTitle]) {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSMenuDidChangeItemNotification
+                                                  object:nil];
     [self addMenuToHostMenu:editorMenuItem.submenu];
   }
+
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(menuDidChange:)
+                                               name:NSMenuDidChangeItemNotification
+                                             object:nil];
 }
 
 @end

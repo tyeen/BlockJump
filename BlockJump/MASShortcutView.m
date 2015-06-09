@@ -51,6 +51,20 @@
     return self;
 }
 
+// Handle initiating from nib file.
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _shortcutCell = [[[self.class shortcutCellClass] alloc] init];
+        _shortcutCell.buttonType = NSPushOnPushOffButton;
+        _shortcutCell.font = [[NSFontManager sharedFontManager] convertFont:_shortcutCell.font toSize:BUTTON_FONT_SIZE];
+        _enabled = YES;
+        [self resetShortcutCellStyle];
+    }
+    return self;
+}
+
 - (void)dealloc
 {
     [self activateEventMonitoring:NO];
