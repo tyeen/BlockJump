@@ -31,7 +31,7 @@ The targets where the caret could jump to are the same as items displayed in
 
 For now, I couldn't do more beyond that.
 
-This plug-in is built under OS X 10.9.2 & Xcode 5.1.
+This plug-in is built under OS X 10.9.2 & Xcode 5.1 and should work on the later version.
 
 ### Installation
 You can either
