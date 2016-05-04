@@ -198,7 +198,7 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
  */
 - (NSRange)_bj_findJumpRangeBelowLandmark:(DVTSourceLandmarkItem *)currLandmark currentLocation:(NSUInteger)currLoc
 {
-  NSRange ret = currLandmark.nameRange;
+  NSRange ret = [self _bj_jumpRangeOfLandmark:currLandmark];
 
   if (currLandmark.type <= 3) {
     // This is a container, and the caret is not at the end of this container, which menas the current
@@ -223,12 +223,17 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
  */
 - (NSRange)_bj_findJumpDownRangeInsideLandmark:(DVTSourceLandmarkItem *)landmark currentLocation:(NSUInteger)currLoc
 {
-  NSRange ret = landmark.nameRange;
+  NSRange ret = [self _bj_jumpRangeOfLandmark:landmark];
   BOOL done = NO;
 
   if (nil == landmark.children || landmark.children.count <= 0) {
-    // An empty container.
-    ret = NSMakeRange(landmark.range.location + landmark.range.length, 0);
+    // An empty container. Try to find the proper target from its parent landmark.
+    DVTSourceLandmarkItem *parentLandmark = landmark.parent;
+    if (parentLandmark) {
+      ret = [self _bj_findJumpDownRangeInsideLandmark:parentLandmark currentLocation:currLoc];
+    } else {
+      ret = NSMakeRange(landmark.range.location + landmark.range.length, 0);
+    }
     done = YES;
   }
 
@@ -239,9 +244,8 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
     // we should avoid that because even actually the caret is at the bottom of second last
     // child landmark of the top-level landmark, this check would be true and caused the caret
     // moving to the first landmark.
-    if (NSLocationInRange(currLoc, landmark.nameRange)
-        && landmark.type != 0) {
-      ret = ((DVTSourceLandmarkItem *)landmark.children[0]).nameRange;
+    if (NSLocationInRange(currLoc, landmark.nameRange) && landmark.type != 0) {
+      ret = [self _bj_jumpRangeOfLandmark:((DVTSourceLandmarkItem *)landmark.children[0])];
       done = YES;
     }
   }
@@ -249,7 +253,7 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
   if (!done) {
     DVTSourceLandmarkItem *firstItem = landmark.children[0];
     if (currLoc < firstItem.range.location) {
-      ret = firstItem.nameRange;
+      ret = [self _bj_jumpRangeOfLandmark:firstItem];
       done = YES;
     }
   }
@@ -262,10 +266,10 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
     }
   }
 
-  // Now we're sure that there're more than one children in the current landmark.
+  // Now we're sure the current landmark has more than one child-landmark.
   // Reason: if there is only one item in this container landmark and the caret is just at a gap
-  // of this container, it must be at the position above the first item or below the last one.
-  // And we've just checked those situations above.
+  // of this container, it must be at the position above the first item or below the last one,
+  // which we've just checked before.
 
   if (!done) {
     NSUInteger loopCount = landmark.children.count;
@@ -275,13 +279,13 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
 
       if (nil == nextItem) {
         // Something is wrong, this could not happen since we've checked above so carefully.
-        // So for fail-safe, we just use the default value.
+        // For fail-safe, we just use the default value.
         done = YES;
         break;
       }
 
       if (currLoc >= item.range.location && currLoc < nextItem.range.location) {
-        ret = nextItem.nameRange;
+        ret = [self _bj_jumpRangeOfLandmark:nextItem];
         done = YES;
         break;
       }
@@ -322,7 +326,7 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
           done = YES;
         } else {
           DVTSourceLandmarkItem *nextItem = parentItem.children[i + 1];
-          ret = nextItem.nameRange;
+          ret = [self _bj_jumpRangeOfLandmark:nextItem];
           done = YES;
         }
       }
@@ -344,11 +348,10 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
  */
 - (NSRange)_bj_findJumpRangeAboveLandmark:(DVTSourceLandmarkItem *)currLandmark currentLocation:(NSUInteger)currLoc
 {
-  NSRange ret = currLandmark.nameRange;
+  NSRange ret = [self _bj_jumpRangeOfLandmark:currLandmark];
 
   if (currLandmark.type <= 3 && currLoc > (currLandmark.nameRange.location + currLandmark.nameRange.length)) {
-    // This is a container. And the caret is below the nameRange of this container. So the position of the caret
-    // is in a "gap" of this container. We need to locate that "gap".
+    // The caret is in a container landmark. Let's find out where it is.
     ret = [self _bj_findJumpUpRangeInsideLandmark:currLandmark currentLocation:currLoc];
   } else {
     // This landmark is not a container, or the caret is not inside this container.
@@ -362,7 +365,7 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
 /**
  * Find the jump up target range from the current landmark where the caret is.
  * Make sure that the landmark parameter is a "container" landmark(from log, type <= 3),
- * and the caret location is in a "gap" in the parameter landmark.
+ * and the caret location is in a "gap" of the parameter landmark.
  *
  * @param landmark the landmark to be searched for.
  * @param currLoc the caret location.
@@ -370,12 +373,11 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
  */
 - (NSRange)_bj_findJumpUpRangeInsideLandmark:(DVTSourceLandmarkItem *)landmark currentLocation:(NSUInteger)currLoc
 {
-  NSRange ret = landmark.nameRange;
+  NSRange ret = [self _bj_jumpRangeOfLandmark:landmark];
   BOOL done = NO;
 
   if (nil == landmark.children || landmark.children.count <= 0) {
     // An empty container.
-    ret = landmark.nameRange;
     done = YES;
   }
 
@@ -383,7 +385,6 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
     // In a gap between the top of this container and the top of the first child item?
     DVTSourceLandmarkItem *firstItem = landmark.children[0];
     if (currLoc <= firstItem.range.location) {
-      ret = landmark.nameRange;
       done = YES;
     }
   }
@@ -392,12 +393,12 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
     // In a gap between the bottom of the last child item and the bottom of this container?
     DVTSourceLandmarkItem *lastItem = landmark.children[landmark.children.count - 1];
     if (currLoc >= lastItem.range.location + lastItem.range.length) {
-      ret = lastItem.nameRange;
+      ret = [self _bj_jumpRangeOfLandmark:lastItem];
       done = YES;
     }
   }
 
-  // Same as findJumpRangeBelow, noew we're sure there're more than one child landmarks in this container.
+  // Same as findJumpRangeBelow, now we're sure there're more than one child landmarks in this container.
 
   if (!done) {
     NSUInteger loopCount = landmark.children.count;
@@ -406,14 +407,14 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
       DVTSourceLandmarkItem *nextItem = (i + 1 >= loopCount) ? nil : landmark.children[i + 1];
 
       if (nil == nextItem) {
-        // Something is wrong. This could not happen since we've checked above so carefully.
+        // Something is wrong. This should not happen since we've checked above so carefully.
         // For fail-safe, we just use the default value.
         done = YES;
         break;
       }
 
       if (currLoc >= item.range.location && currLoc <= nextItem.range.location) {
-        ret = item.nameRange;
+        ret = [self _bj_jumpRangeOfLandmark:item];
         done = YES;
         break;
       }
@@ -451,7 +452,7 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
         // because top-level landmark's nameRange == its range.
         // So when we got into that situation, it means the caret has been
         // reached top most of the source file.
-        ret = parentLandmark.nameRange;
+        ret = [self _bj_jumpRangeOfLandmark:parentLandmark];
       }
       done = YES;
     }
@@ -467,12 +468,12 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
           // If the target is a container, we need to check inside instead of just jumping to its name range.
           if (item.type <= 3) {
             if (item.children != nil && item.children.count > 0) {
-              ret = ((DVTSourceLandmarkItem *)item.children[item.children.count - 1]).nameRange;
+              ret = [self _bj_jumpRangeOfLandmark:((DVTSourceLandmarkItem *)item.children[item.children.count - 1])];
             } else {
-              ret = item.nameRange;
+              ret = [self _bj_jumpRangeOfLandmark:item];
             }
           } else {
-            ret = item.nameRange;
+            ret = [self _bj_jumpRangeOfLandmark:item];
           }
           done = YES;
           break;
@@ -482,6 +483,20 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
   }
 
   return ret;
+}
+
+/**
+ * Get the jumping target range from the given landmark.
+ */
+- (NSRange)_bj_jumpRangeOfLandmark:(DVTSourceLandmarkItem *)landmark {
+  // landmark's `range.location` may not equal to `nameRange.location`.
+  // e.g. in Swift, the `range.location` of an empty "// MARK:" is pointing to the "M", with an empty `name` and
+  // 0 length `nameRange`.
+  // When that happens, we use both `range` and `nameRange` to determine the final jumping range.
+  return (landmark.range.location < landmark.nameRange.location)
+  ? NSMakeRange(landmark.range.location,
+                (landmark.nameRange.location - landmark.range.location + landmark.nameRange.length))
+  : landmark.nameRange;
 }
 
 @end
