@@ -1,3 +1,10 @@
+### NOTE
+Since Xcode 8, all third party plug-ins are prohibited. This plug-in won't work by default on
+Xcode version higher than 8. There are some ways to workaround it, but for security reasons,
+I don't recommend it.
+
+However, I'll try my best to continue supporting future Xcode versions here.
+
 ### What is this
 I'm a beginner of Cocoa developing, and just started using Xcode recently.
 In my immature opinion, Xcode is lack of navigating skills.
