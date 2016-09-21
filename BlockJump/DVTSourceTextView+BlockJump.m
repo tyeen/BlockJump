@@ -15,6 +15,9 @@
 #define JUMP_DIRECTION_NONE 0
 #define JUMP_DIRECTION_UP 1
 #define JUMP_DIRECTION_DOWN 2
+// Well, magic number. Hate it. But the whole data structure is decomplied, I have no idea where
+// this number is defined, just got it from the log. And BTW, for Xcode < 8, it's 3.
+#define LANDMARK_TYPE_CONTAINER 4
 
 @implementation DVTSourceTextView (BlockJump)
 
@@ -200,7 +203,7 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
 {
   NSRange ret = [self _bj_jumpRangeOfLandmark:currLandmark];
 
-  if (currLandmark.type <= 3) {
+  if (currLandmark.type <= LANDMARK_TYPE_CONTAINER) {
     // This is a container, and the caret is not at the end of this container, which menas the current
     // position is in a "gap" inside this container. We need to locate that "gap".
     ret = [self _bj_findJumpDownRangeInsideLandmark:currLandmark currentLocation:currLoc];
@@ -297,7 +300,7 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
 
 /**
  * Find the landmark below the current landmark and return its range.
- * Make sure that the landmark parameter is not a "container" landmark(from log, type > 3),
+ * Make sure that the landmark parameter is not a "container" landmark,
  * and the caret location is not in a "gap" between two landmarks.
  *
  * @param currLandmark the landmark to be searched for.
@@ -350,7 +353,7 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
 {
   NSRange ret = [self _bj_jumpRangeOfLandmark:currLandmark];
 
-  if (currLandmark.type <= 3 && currLoc > (currLandmark.nameRange.location + currLandmark.nameRange.length)) {
+  if (currLandmark.type <= LANDMARK_TYPE_CONTAINER && currLoc > NSMaxRange(currLandmark.nameRange)) {
     // The caret is in a container landmark. Let's find out where it is.
     ret = [self _bj_findJumpUpRangeInsideLandmark:currLandmark currentLocation:currLoc];
   } else {
@@ -364,7 +367,7 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
 
 /**
  * Find the jump up target range from the current landmark where the caret is.
- * Make sure that the landmark parameter is a "container" landmark(from log, type <= 3),
+ * Make sure that the landmark parameter is a "container" landmark,
  * and the caret location is in a "gap" of the parameter landmark.
  *
  * @param landmark the landmark to be searched for.
@@ -426,7 +429,7 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
 
 /**
  * Find the landmark above the current landmark and return its range.
- * Make sure that the landmark parameter is not a "container" landmark(from log, type > 3),
+ * Make sure that the landmark parameter is not a "container" landmark,
  * and the caret location is not in a "gap" between two landmarks.
  *
  * @param currLandmark the landmark to be searched for.
@@ -466,7 +469,7 @@ void *kJumpNextShortcut = &kJumpNextShortcut;
         if (nil == nextItem || // reached bottom
             (currLoc >= item.range.location && currLoc <= nextItem.nameRange.location + nextItem.nameRange.length)) {
           // If the target is a container, we need to check inside instead of just jumping to its name range.
-          if (item.type <= 3) {
+          if (item.type <= LANDMARK_TYPE_CONTAINER) {
             if (item.children != nil && item.children.count > 0) {
               ret = [self _bj_jumpRangeOfLandmark:((DVTSourceLandmarkItem *)item.children[item.children.count - 1])];
             } else {
